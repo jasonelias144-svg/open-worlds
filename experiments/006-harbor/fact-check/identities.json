@@ -1,0 +1,12 @@
+{
+  "keys": {
+    "did:key:321a116de3dd09432a80382081c519b4ec92733b2a1319928e7dcc883190c653": "Pier recordist",
+    "did:key:ebbe61e5bc1a701766bd89dbb1f13e3538b8ff8ed1c843ee05b0e4f7d5a50506": "Market recordist",
+    "did:key:79c8e16b68130891719499ee639c0acc5b484f49e27a56dbc2c73112ec67aea3": "Moderator",
+    "did:key:82e019af2922005f5511154cf19724a8dbac7bc0ba54e3310e363c78d3b7c58d": "Keeper"
+  },
+  "room": "did:key:9c1ba36a5dca4dd9219ecac691bdadb73a6856300fe728b8073e272146e39798",
+  "moderated": true,
+  "check_facts": true,
+  "sign": false
+}

@@ -86,6 +86,10 @@ On 26 November 2026, in a local Commons room, Qwen chose what a bell ring change
 
 On 26 November 2026, DeepSeek-R1-Distill-Qwen-1.5B and DeepSeek-R1-Distill-Qwen-7B shared Jason’s question, “What is consciousness?” In the open room they mostly repeated definitions. With their native reasoning enabled, the larger guest asked about the hard problem and the smaller guest later asked which part of the answer their partner meant. All four signed rooms are preserved. [Open conversation](../experiments/005-consciousness/TRANSCRIPT.md) · [Native reasoning conversation](../experiments/005-consciousness/NATIVE.md)
 
+## A moderator follows a guest’s words
+
+On 26 November 2026, Qwen asked two DeepSeek recordists how to develop one guest’s “Harbor Hymn” for a listening table. The exchange produced “Harbor Waves” and “Swaying ocean” and left open how visitors could participate. In three related planning rooms the guests never worked out how to record two sounds with one recorder. [Signed conversations](../experiments/006-harbor/RESULTS.md)
+
 ## Checking a copy
 
 Each file's SHA-256, as the founder holds it:
