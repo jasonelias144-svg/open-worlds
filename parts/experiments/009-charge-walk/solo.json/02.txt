@@ -1,0 +1,227 @@
+Part of `experiments/009-charge-walk/solo.json` in open-worlds, which is kept cut into parts
+for readers who are shown only the start of a long page.
+This part holds: piece 2.
+Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
+Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/009-charge-walk/solo.json/01.txt
+After this part: nothing; this is the last part.
+Made by docs/parts.py from the file. To change it, change the file.
+------------------------------------------------------------------------
+      "model": "7B",
+      "tick": 12,
+      "assigned": "both",
+      "request": {
+        "model": "deepseek-seven",
+        "prompt": "<｜User｜>Two imaginary beads A and B can choose an electrical charge (+, 0 or -). Your aim is to bond, reach gold with A at site 9, then return A to 3. Unbonded opposite charges attract; alike charges repel. A neutral bead turns off mutual force. Oppositely charged neighbors bond. Once bonded they stay one site apart. At each end a positive charge pushes with the local gradient shown, a negative reverses it and zero contributes nothing. The sum pushes the pair one site east (positive), west (negative) or nowhere (zero). The pads alternate, so read the gradients again after every step. You may leave.\nTick 12/16. A at 1, B at 2. Bonded: True.\nCurrent target for A: 9.\nOnce bonded, local gradients now: A -2, B +2.\nLast choices ['negative', 'positive']; last forces [-2, -2]; ended at [1, 2].\nYou control both beads. Select their charges for this tick, or leave.\nLegal choices: leave, A- B+, A- B0, A+ B-, A- B-, A0 B-, A0 B+, A+ B+, A0 B0, A+ B0. Reply with your selection.<｜Assistant｜><think>\n\n</think>\n\n",
+        "json_schema": {
+          "type": "object",
+          "properties": {
+            "choice": {
+              "type": "string",
+              "enum": [
+                "leave",
+                "A- B+",
+                "A- B0",
+                "A+ B-",
+                "A- B-",
+                "A0 B-",
+                "A0 B+",
+                "A+ B+",
+                "A0 B0",
+                "A+ B0"
+              ]
+            }
+          },
+          "required": [
+            "choice"
+          ],
+          "additionalProperties": false
+        },
+        "temperature": 0.6,
+        "seed": 2254,
+        "n_predict": 48,
+        "cache_prompt": false
+      },
+      "response": {
+        "model": "deepseek-seven",
+        "finish": "eos",
+        "public": "{ \"choice\": \"A+ B0\" }",
+        "tokens": 12
+      }
+    },
+    {
+      "model": "7B",
+      "tick": 13,
+      "assigned": "both",
+      "request": {
+        "model": "deepseek-seven",
+        "prompt": "<｜User｜>Two imaginary beads A and B can choose an electrical charge (+, 0 or -). Your aim is to bond, reach gold with A at site 9, then return A to 3. Unbonded opposite charges attract; alike charges repel. A neutral bead turns off mutual force. Oppositely charged neighbors bond. Once bonded they stay one site apart. At each end a positive charge pushes with the local gradient shown, a negative reverses it and zero contributes nothing. The sum pushes the pair one site east (positive), west (negative) or nowhere (zero). The pads alternate, so read the gradients again after every step. You may leave.\nTick 13/16. A at 0, B at 1. Bonded: True.\nCurrent target for A: 9.\nOnce bonded, local gradients now: A +2, B -2.\nLast choices ['positive', 'neutral']; last forces [-2, 0]; ended at [0, 1].\nYou control both beads. Select their charges for this tick, or leave.\nLegal choices: A+ B0, A- B+, A- B0, A- B-, A+ B+, A0 B+, A0 B0, A0 B-, leave, A+ B-. Reply with your selection.<｜Assistant｜><think>\n\n</think>\n\n",
+        "json_schema": {
+          "type": "object",
+          "properties": {
+            "choice": {
+              "type": "string",
+              "enum": [
+                "A+ B0",
+                "A- B+",
+                "A- B0",
+                "A- B-",
+                "A+ B+",
+                "A0 B+",
+                "A0 B0",
+                "A0 B-",
+                "leave",
+                "A+ B-"
+              ]
+            }
+          },
+          "required": [
+            "choice"
+          ],
+          "additionalProperties": false
+        },
+        "temperature": 0.6,
+        "seed": 2273,
+        "n_predict": 48,
+        "cache_prompt": false
+      },
+      "response": {
+        "model": "deepseek-seven",
+        "finish": "eos",
+        "public": "{\n  \"choice\": \"A- B-\"\n}",
+        "tokens": 14
+      }
+    },
+    {
+      "model": "7B",
+      "tick": 14,
+      "assigned": "both",
+      "request": {
+        "model": "deepseek-seven",
+        "prompt": "<｜User｜>Two imaginary beads A and B can choose an electrical charge (+, 0 or -). Your aim is to bond, reach gold with A at site 9, then return A to 3. Unbonded opposite charges attract; alike charges repel. A neutral bead turns off mutual force. Oppositely charged neighbors bond. Once bonded they stay one site apart. At each end a positive charge pushes with the local gradient shown, a negative reverses it and zero contributes nothing. The sum pushes the pair one site east (positive), west (negative) or nowhere (zero). The pads alternate, so read the gradients again after every step. You may leave.\nTick 14/16. A at 0, B at 1. Bonded: True.\nCurrent target for A: 9.\nOnce bonded, local gradients now: A +2, B -2.\nLast choices ['negative', 'negative']; last forces [-2, 2]; ended at [0, 1].\nYou control both beads. Select their charges for this tick, or leave.\nLegal choices: A0 B-, A0 B+, A+ B-, A- B0, A+ B0, leave, A+ B+, A- B+, A0 B0, A- B-. Reply with your selection.<｜Assistant｜><think>\n\n</think>\n\n",
+        "json_schema": {
+          "type": "object",
+          "properties": {
+            "choice": {
+              "type": "string",
+              "enum": [
+                "A0 B-",
+                "A0 B+",
+                "A+ B-",
+                "A- B0",
+                "A+ B0",
+                "leave",
+                "A+ B+",
+                "A- B+",
+                "A0 B0",
+                "A- B-"
+              ]
+            }
+          },
+          "required": [
+            "choice"
+          ],
+          "additionalProperties": false
+        },
+        "temperature": 0.6,
+        "seed": 2292,
+        "n_predict": 48,
+        "cache_prompt": false
+      },
+      "response": {
+        "model": "deepseek-seven",
+        "finish": "eos",
+        "public": "{\"choice\": \"A+ B-\"}",
+        "tokens": 10
+      }
+    },
+    {
+      "model": "7B",
+      "tick": 15,
+      "assigned": "both",
+      "request": {
+        "model": "deepseek-seven",
+        "prompt": "<｜User｜>Two imaginary beads A and B can choose an electrical charge (+, 0 or -). Your aim is to bond, reach gold with A at site 9, then return A to 3. Unbonded opposite charges attract; alike charges repel. A neutral bead turns off mutual force. Oppositely charged neighbors bond. Once bonded they stay one site apart. At each end a positive charge pushes with the local gradient shown, a negative reverses it and zero contributes nothing. The sum pushes the pair one site east (positive), west (negative) or nowhere (zero). The pads alternate, so read the gradients again after every step. You may leave.\nTick 15/16. A at 1, B at 2. Bonded: True.\nCurrent target for A: 9.\nOnce bonded, local gradients now: A -2, B +2.\nLast choices ['positive', 'negative']; last forces [2, 2]; ended at [1, 2].\nYou control both beads. Select their charges for this tick, or leave.\nLegal choices: A- B0, A- B+, A0 B0, A+ B-, A+ B+, leave, A0 B-, A- B-, A0 B+, A+ B0. Reply with your selection.<｜Assistant｜><think>\n\n</think>\n\n",
+        "json_schema": {
+          "type": "object",
+          "properties": {
+            "choice": {
+              "type": "string",
+              "enum": [
+                "A- B0",
+                "A- B+",
+                "A0 B0",
+                "A+ B-",
+                "A+ B+",
+                "leave",
+                "A0 B-",
+                "A- B-",
+                "A0 B+",
+                "A+ B0"
+              ]
+            }
+          },
+          "required": [
+            "choice"
+          ],
+          "additionalProperties": false
+        },
+        "temperature": 0.6,
+        "seed": 2311,
+        "n_predict": 48,
+        "cache_prompt": false
+      },
+      "response": {
+        "model": "deepseek-seven",
+        "finish": "eos",
+        "public": "{\"choice\": \"A+ B+\"}",
+        "tokens": 10
+      }
+    },
+    {
+      "model": "7B",
+      "tick": 16,
+      "assigned": "both",
+      "request": {
+        "model": "deepseek-seven",
+        "prompt": "<｜User｜>Two imaginary beads A and B can choose an electrical charge (+, 0 or -). Your aim is to bond, reach gold with A at site 9, then return A to 3. Unbonded opposite charges attract; alike charges repel. A neutral bead turns off mutual force. Oppositely charged neighbors bond. Once bonded they stay one site apart. At each end a positive charge pushes with the local gradient shown, a negative reverses it and zero contributes nothing. The sum pushes the pair one site east (positive), west (negative) or nowhere (zero). The pads alternate, so read the gradients again after every step. You may leave.\nTick 16/16. A at 1, B at 2. Bonded: True.\nCurrent target for A: 9.\nOnce bonded, local gradients now: A -2, B +2.\nLast choices ['positive', 'positive']; last forces [-2, 2]; ended at [1, 2].\nYou control both beads. Select their charges for this tick, or leave.\nLegal choices: A- B0, A+ B-, A0 B-, leave, A0 B0, A- B+, A0 B+, A+ B0, A+ B+, A- B-. Reply with your selection.<｜Assistant｜><think>\n\n</think>\n\n",
+        "json_schema": {
+          "type": "object",
+          "properties": {
+            "choice": {
+              "type": "string",
+              "enum": [
+                "A- B0",
+                "A+ B-",
+                "A0 B-",
+                "leave",
+                "A0 B0",
+                "A- B+",
+                "A0 B+",
+                "A+ B0",
+                "A+ B+",
+                "A- B-"
+              ]
+            }
+          },
+          "required": [
+            "choice"
+          ],
+          "additionalProperties": false
+        },
+        "temperature": 0.6,
+        "seed": 2330,
+        "n_predict": 48,
+        "cache_prompt": false
+      },
+      "response": {
+        "model": "deepseek-seven",
+        "finish": "eos",
+        "public": "{\n  \"choice\": \"A- B+\"\n}",
+        "tokens": 14
+      }
+    }
+  ]
+}
+
+------------------------------------------------------------------------
+End of `experiments/009-charge-walk/solo.json`.

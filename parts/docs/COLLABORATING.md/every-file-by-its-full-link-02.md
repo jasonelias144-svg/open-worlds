@@ -2,7 +2,7 @@
 > for readers who are shown only the start of a long page.
 > This part holds: "Every file, by its full link", piece 2 (its pieces are numbered from its end).
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
-> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/code-in-rust.md
+> Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md
 > After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
@@ -29,6 +29,24 @@ bytes is also kept cut into parts, for a reader who is shown only the start of a
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
+
+**Charge walk** (13).
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/PLAN.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/RESULTS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/field.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/run.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/pilot.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/render.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/controls.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/solo.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/pair.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/preview.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/walk.gif
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/009-charge-walk/pilots.gif
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_charge_walk.py
+```
 
 **Scenario course and rehearsal poems** (10).
 
