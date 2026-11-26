@@ -27,7 +27,7 @@ ORIENTATION = (
 
 CONSCIOUSNESS = "What is consciousness?"
 ANSWER_PREFIX = "<think>\n\n</think>\n\n"
-DEEPSEEK_MODES = ("consciousness", "consciousness-peer", "consciousness-question")
+DEEPSEEK_MODES = ("consciousness", "consciousness-peer", "consciousness-question", "consciousness-native")
 DIALOGUE_MODES = ("dialogue", "final", *DEEPSEEK_MODES)
 
 
@@ -128,7 +128,21 @@ def request_for(who, turns, mode):
             "You can reply PASS to yield your turn.")
         request["messages"][1]["content"] = json.dumps(
             {"topic": TOPIC, "conversation": turns, "your_turn": cue}, ensure_ascii=False)
-    if mode in DIALOGUE_MODES:
+    if mode in ("consciousness-question", "consciousness-native"):
+        other = names[1-who]
+        context = (f"You are {name}. Your conversation partner is {other}. "
+                   f"Jason asked you both: {CONSCIOUSNESS}")
+        if turns:
+            history = json.dumps(turns, ensure_ascii=False)
+            cue = (f"The signed conversation so far is below.\n{history}\n\n"
+                   f"What do you want to say back to {other} about their last words? "
+                   "Answer them directly in up to three sentences. You can ask them a "
+                   "question of your own or say PASS.")
+        else:
+            cue = (f"Ask {other} one concrete question about a case where you are unsure "
+                   "what counts as conscious. Write only the question you want them to hear, or PASS.")
+        request["messages"] = [{"role": "user", "content": context + "\n\n" + cue}]
+    elif mode in DIALOGUE_MODES:
         messages = [{"role": "system", "content":
                      f"You are {name}, chatting with {names[1-who]} in a text-only Commons room. "
                      f"The topic is: {topic_for(mode)} Use your own words and address your peer directly. "
@@ -150,25 +164,13 @@ def request_for(who, turns, mode):
             notice = ("[Turn scheduler: no new message from the other guest. You may continue or pass.]"
                       if mode in ("final", *DEEPSEEK_MODES) else "The floor is open.")
             messages.append({"role": "user", "content": notice})
-        if mode == "consciousness-question":
-            other = names[1-who]
-            context = (f"You are {name}. Your conversation partner is {other}. "
-                       f"Jason asked you both: {CONSCIOUSNESS}")
-            if turns:
-                history = json.dumps(turns, ensure_ascii=False)
-                cue = (f"The signed conversation so far is below.\n{history}\n\n"
-                       f"What do you want to say back to {other} about their last words? "
-                       "Answer them directly in up to three sentences. You can ask them a "
-                       "question of your own or say PASS.")
-            else:
-                cue = (f"Ask {other} one concrete question about a case where you are unsure "
-                       "what counts as conscious. Write only the question you want them to hear, or PASS.")
-            messages = [{"role": "user", "content": context + "\n\n" + cue}]
-        if mode in DEEPSEEK_MODES:
-            messages.append({"role": "assistant", "content": ANSWER_PREFIX})
-            request.update(temperature=0.6, max_tokens=512, add_generation_prompt=False,
-                           continue_final_message=True)
         request["messages"] = messages
+    if mode == "consciousness-native":
+        request.update(temperature=0.6, max_tokens=832)
+    elif mode in DEEPSEEK_MODES:
+        request["messages"].append({"role": "assistant", "content": ANSWER_PREFIX})
+        request.update(temperature=0.6, max_tokens=512, add_generation_prompt=False,
+                       continue_final_message=True)
     return request
 
 
@@ -215,6 +217,8 @@ def discussion(plugin, ports, dest, mode):
                     choice = response["choices"][0]
                     raw = choice["message"]["content"]
                     entry.update(raw=raw, usage=response.get("usage"), finish=choice["finish_reason"])
+                    if mode == "consciousness-native":
+                        entry["used_reasoning_channel"] = bool(choice["message"].get("reasoning_content"))
                     if mode in DEEPSEEK_MODES:
                         entry["reported_model"] = response["model"]
                         if entry["reported_model"] != request["model"]:
