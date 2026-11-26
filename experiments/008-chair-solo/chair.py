@@ -32,46 +32,59 @@ def opening(timing):
     return f"At rehearsal, a chair scraped the floor {timing} the next solo."
 
 
-def request(name, timing, lines, plain=False):
+def request(name, timing, lines, form):
     history = "\n".join(json.dumps(line, ensure_ascii=False) for line in lines)
-    instruction = (
-        f"You are {name}, one of two poets at rehearsal. Write together in the Poetry World. "
-        "The opening and accepted turns below are the material for the poem. "
-        "You can contribute, pass or leave. For a turn, acknowledge one specific detail you heard "
-        "(use a word from the last verse or invitation if there is one). In proposal, write one "
-        "new line of verse that something in the last turn or opening made you want to write. "
-        "In invitation, ask your fellow poet one short open question growing out of your line. "
-        "Set holds_open to whether you leave that question open. For pass or leave, use empty "
-        "text fields and false.\n\nOpening line:\n" + opening(timing)
-        + "\n\nAccepted turns in order:\n" + (history or "(none yet)")
-    )
-    if plain:
-        instruction = (
+    if form == "verse":
+        history = "\n\n".join(line["poet"] + "\n" + line["proposal"] for line in lines)
+        cue = (
+            f"You are {name}. At rehearsal two poets are writing a poem together, one short stanza "
+            "at a time. Read what is on the page. If you want to write, add a few lines of your own "
+            "that pick up something you hear. Your partner will see exactly the words you put on the page. "
+            "Give only the verse you want to share. You may also send the single word PASS or LEAVE."
+        )
+    elif form == "plain":
+        cue = (
             f"You are {name}, writing a poem with another poet at rehearsal. "
             "Read the opening and the accepted poem so far. If you would like to contribute, "
             "answer with three lines. After Heard: name a detail you heard, using a word "
             "from the previous poet's line or question if there is one. After Line: write "
             "one new line of verse. After Question: ask the other poet a short, open question "
             "arising from your new line. You may instead send the single word PASS or LEAVE."
-            "\n\nOpening line:\n" + opening(timing) + "\n\nAccepted turns in order:\n" + (history or "(none yet)")
         )
-    body = {"model": harbor.MODELS[ENDPOINTS[name]], "messages": [{"role": "user", "content": instruction}],
-            "response_format": {"type": "json_schema", "json_schema": {"name": "poetry_turn", "schema": SCHEMA}},
+    else:
+        cue = (
+            f"You are {name}, one of two poets at rehearsal. Write together in the Poetry World. "
+            "The opening and accepted turns below are the material for the poem. "
+            "You can contribute, pass or leave. For a turn, acknowledge one specific detail you heard "
+            "(use a word from the last verse or invitation if there is one). In proposal, write one "
+            "new line of verse that something in the last turn or opening made you want to write. "
+            "In invitation, ask your fellow poet one short open question growing out of your line. "
+            "Set holds_open to whether you leave that question open. For pass or leave, use empty "
+            "text fields and false."
+        )
+    instruction = (cue + "\n\nOpening line:\n" + opening(timing)
+                   + "\n\nAccepted turns in order:\n" + (history or "(none yet)"))
+    body = {"model": harbor.MODELS[ENDPOINTS[name]],
+            "messages": [{"role": "user", "content": instruction}],
             "temperature": 0.6, "seed": 42, "max_tokens": 640, "cache_prompt": False}
-
-
-    if plain:
-        del body["response_format"]
+    if form == "structured":
+        body["response_format"] = {"type": "json_schema",
+                                   "json_schema": {"name": "poetry_turn", "schema": SCHEMA}}
     return body
 
 
-def decision(call, plain=False):
+def decision(call, form):
     if call["finish"] != "stop" or not isinstance(call["public"], str):
         return "withheld", None
-    if plain:
+    if form in ("plain", "verse"):
         public = call["public"].strip()
         if public.upper() in ("PASS", "LEAVE"):
             return public.lower(), None
+        if form == "verse":
+            if not public:
+                return "withheld", None
+            return "turn", {"acknowledgment": "", "proposal": public,
+                            "invitation": "", "holds_open": False}
         rows = [line.strip() for line in public.splitlines() if line.strip()]
         labels = ("Heard:", "Line:", "Question:")
         if len(rows) != 3 or any(not row.startswith(label) for row, label in zip(rows, labels)):
@@ -96,10 +109,18 @@ def require(condition, message):
         raise ValueError(message)
 
 
-def run(timing, path, plain=False):
+def law_for(form):
+    if form == "verse":
+        return PoetryWorldLaw(max_turns=4, requires_acknowledgment=False,
+                              requires_acknowledgment_references_prior=False,
+                              requires_invitation=False, requires_holds_open=False)
+    return PoetryWorldLaw(max_turns=4)
+
+
+def run(timing, path, form):
     # Exclusive creation makes overwriting a previous run impossible.
     with path.open("x", encoding="utf-8") as output:
-        world = PoetryWorld("rehearsal-" + timing, "Rehearsal", PoetryWorldLaw(max_turns=4))
+        world = PoetryWorld("rehearsal-" + timing, "Rehearsal", law_for(form))
         manifest = world.manifest()
         guests = {name: make_client(name) for name in POETS}
         for guest in guests.values():
@@ -111,7 +132,7 @@ def run(timing, path, plain=False):
             for i in range(4):
                 name = POETS[i % 2]
                 guest = guests[name]
-                body = request(name, timing, lines, plain)
+                body = request(name, timing, lines, form)
                 attempt = {"poet": name, "request": body}
                 attempts.append(attempt)
                 try:
@@ -123,7 +144,7 @@ def run(timing, path, plain=False):
                     break
                 del call["request"]
                 attempt["call"] = call
-                outcome, payload = decision(call, plain)
+                outcome, payload = decision(call, form)
                 if outcome == "turn":
                     act = guest.individual.act(manifest, "poem.turn", payload)
                     attempt["signed_act"] = asdict(act)
@@ -146,7 +167,7 @@ def run(timing, path, plain=False):
         finally:
             for guest in guests.values():
                 leave_world(guest, world)
-            json.dump({"format": "plain" if plain else "structured", "timing": timing, "opening": opening(timing), "manifest": asdict(manifest),
+            json.dump({"format": form, "timing": timing, "opening": opening(timing), "manifest": asdict(manifest),
                        "attempts": attempts, "stop": stop, "log": [asdict(e) for e in world.log_since()],
                        "passports": [passport.to_dict(g.passport) for g in guests.values()]},
                       output, ensure_ascii=False, indent=2)
@@ -157,8 +178,7 @@ def verify(path):
     record = json.loads(path.read_text())
     timing = record["timing"]
     form = record.get("format", "structured")
-    require(form in ("structured", "plain"), "unknown invitation format")
-    plain = form == "plain"
+    require(form in ("structured", "plain", "verse"), "unknown invitation format")
     manifest = Manifest(**record["manifest"])
     require(timing in ("before", "after") and record["opening"] == opening(timing), "opening mismatch")
     require(manifest.entity_id == "rehearsal-" + timing and not manifest_problem(manifest), "manifest mismatch")
@@ -178,14 +198,14 @@ def verify(path):
     stop = None
     # Reapply the ordinary poetry law with fresh identities to check acceptances,
     # refusals and convergence independently of the archived world keys.
-    mirror = PoetryWorld("replay", "Rehearsal", PoetryWorldLaw(max_turns=4))
+    mirror = PoetryWorld("replay", "Rehearsal", law_for(form))
     readers = {name: make_client(name) for name in POETS}
     for reader in readers.values():
         petition_world(reader, mirror)
     for i, attempt in enumerate(record["attempts"]):
         name = POETS[i % 2]
         require(stop is None and i < 4 and attempt["poet"] == name, "turn order mismatch")
-        body = request(name, timing, lines, plain)
+        body = request(name, timing, lines, form)
         require(body == attempt["request"], "prompt does not match preceding accepted turns")
         if "error" in attempt:
             require(attempt["outcome"] == "error", "error outcome mismatch")
@@ -193,7 +213,7 @@ def verify(path):
             continue
         call = attempt["call"]
         require(call["model"] == body["model"], "wrong endpoint in record")
-        outcome, payload = decision(call, plain)
+        outcome, payload = decision(call, form)
         if outcome == "turn":
             act = Act(**attempt["signed_act"])
             require(act.type == "poem.turn" and act.actor_token == keys[name] and act.payload == payload and
@@ -228,9 +248,14 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("mode", choices=("before", "after", "verify"))
     parser.add_argument("file", type=Path)
-    parser.add_argument("--plain", action="store_true", help="use the follow-up invitation for a new run")
+    forms = parser.add_mutually_exclusive_group()
+    forms.add_argument("--plain", dest="form", action="store_const", const="plain",
+                       help="use the three-label follow-up invitation")
+    forms.add_argument("--free-verse", dest="form", action="store_const", const="verse",
+                       help="accept verse alone under the optional poetry law")
+    parser.set_defaults(form="structured")
     args = parser.parse_args()
     if args.mode == "verify":
         verify(args.file)
     else:
-        run(args.mode, args.file, args.plain)
+        run(args.mode, args.file, args.form)
