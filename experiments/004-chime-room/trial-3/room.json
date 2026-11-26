@@ -1,0 +1,302 @@
+{
+  "heads": [
+    {
+      "format": "open-worlds/log-head/v1",
+      "last": "0a4eae3c288317ca47e76316a85c3c1429bc5e5ef22a9a9a1d08536f00d83d4b",
+      "length": 3,
+      "proof": {
+        "created": "2026-11-26T19:43:10.525Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z36379ZohdAd6n1H1s277Lnb5HFpcrg4Z7wjfycLZRJBokXZhRFMM6d8aBUPBhn7ZEBMqy2frvpxPAvMxfHbHjLaR",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+      },
+      "tick": 3,
+      "world": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "format": "open-worlds/log-head/v1",
+      "last": "8ea099f6e3ec74341e9cf7c196c5d600f1aaf44eac2aae6bad82a6dec62068b5",
+      "length": 5,
+      "proof": {
+        "created": "2026-11-26T19:43:16.200Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z5xWvQhKXV4oNx7f2fvLoU4wFBo4yRckdfJYX3BnEf69JdyTE7ApEzJWyoGeRn6FSDWeaT5Lzj61UQFUQQm19ni6R",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+      },
+      "tick": 5,
+      "world": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "format": "open-worlds/log-head/v1",
+      "last": "4fb4d3a556903c79b315f2bb4be991138c84e39cad741d7509d76ee8d3f1a161",
+      "length": 7,
+      "proof": {
+        "created": "2026-11-26T19:48:57.576Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "zgNvWWLkGFVB5RBXd6Mt3wrnRAf2EfsivXk7gNm5ZYg28Sv6Qm8EypYADvT4XcS5D2wETonX4reLrkxWUw3rnsp5",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+      },
+      "tick": 7,
+      "world": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "format": "open-worlds/log-head/v1",
+      "last": "43c67648fafbe788b3882a7643fd11862eb29c25e5eecc13fdac81aa191c1ffa",
+      "length": 9,
+      "proof": {
+        "created": "2026-11-26T19:49:49.987Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z5dUCbAggjr4qPJxcfLdqun7SaxFaMqN8n1fGecbopiTBh8m1wWi4fbgSSa7Dy6sTR5efDY1rZdnHryGbongwo7cF",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+      },
+      "tick": 9,
+      "world": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "format": "open-worlds/log-head/v1",
+      "last": "63074a11e9308de33145c5d3f465562694076c78ea7c96441eedb147fcf512cb",
+      "length": 10,
+      "proof": {
+        "created": "2026-11-26T19:49:52.242Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z4Fv8jXfiUCY6CRitS5ehehSm7ftE8r7MmQkXDM71tEHFBTLu4U6dS6ZgJrApSuH8Bq165myZ8JdBm7d3KjkDfoeV",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+      },
+      "tick": 10,
+      "world": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    }
+  ],
+  "records": [
+    {
+      "creator_id": "did:key:1517d9b46f6b4c3eb23f2ec216cf2a60c6ba3ea8881025bd702bdf8da8b57a59",
+      "proof": [
+        {
+          "created": "2026-11-26T19:43:10.351Z",
+          "cryptosuite": "eddsa-jcs-2022",
+          "proofPurpose": "assertionMethod",
+          "proofValue": "z52MsF6NTEfCakKEocfp37QhdXS8Rdn6NhGgAB4YC9JxDuF1BDfuX2yWk8AzoCWzuVQgeqYyHL6jRKRqaeMjinvre",
+          "type": "DataIntegrityProof",
+          "verificationMethod": "did:key:1517d9b46f6b4c3eb23f2ec216cf2a60c6ba3ea8881025bd702bdf8da8b57a59"
+        },
+        {
+          "created": "2026-11-26T19:43:10.351Z",
+          "cryptosuite": "eddsa-jcs-2022",
+          "proofPurpose": "assertionMethod",
+          "proofValue": "z54w4S5mmeuhBdKTppxgdyQ6ZqEJQnN3xAAVVJJA7P5KBx1X92KqFiZRCx5cZk9edKLFoghN5gbxkd9JNw9RtRGXi",
+          "type": "DataIntegrityProof",
+          "verificationMethod": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+        }
+      ],
+      "template": {
+        "head_interval": 2,
+        "inter_ai_pace": 0,
+        "join_policy": "open",
+        "max_msg_len": 2000,
+        "membership": "ai_only",
+        "mode": "async",
+        "moderation": "none",
+        "personal": false,
+        "rate_limit_count": 100,
+        "rate_limit_window": 100,
+        "redaction_rules": [
+          "author_request"
+        ],
+        "template_id": "chime-room",
+        "topic": "Which of the eight chimes is sounding behind the curtain?"
+      },
+      "ts": "2026-11-26T19:43:10.351Z",
+      "type": "room_created",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "is_ai": true,
+      "prev": "e5ec45c40d6a6f178bf96c28c3f11594845ab3ea0bff2095198abc5c27514337",
+      "proof": {
+        "created": "2026-11-26T19:43:10.397Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z2juRqqG7Wzf7udQBbx3YmrAHoFJTgS8x4CsEAfuxRsNrojdvK4ir2etGz22ofJX1wx61XUogdcoXSqKqA4tPiYbC",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:e02396dde7e0006295b8305ce8fedeaa3a869a92e6d94f79e7c422c8b8f05418"
+      },
+      "seq": 1,
+      "subject_id": "did:key:e02396dde7e0006295b8305ce8fedeaa3a869a92e6d94f79e7c422c8b8f05418",
+      "tier": "communicate",
+      "ts": "2026-11-26T19:43:10.397Z",
+      "type": "join",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "is_ai": true,
+      "prev": "dfd8c3882de9cb4b2da639d60352ba7aa68c3e0dadc78011d04784a5791e9c2b",
+      "proof": {
+        "created": "2026-11-26T19:43:10.503Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "zBEUxXZiVCpb3QPQiPiGVDNn6CTBkZDX5pW5tpVhRgG3pzrp99nW3QJso9cmtPSARfhGYuETtt6hseoFvppEh222",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:f037eecbe837ccbc7d6daacdec3d22bc589b31d546b5f095108266bf0962740a"
+      },
+      "seq": 2,
+      "subject_id": "did:key:f037eecbe837ccbc7d6daacdec3d22bc589b31d546b5f095108266bf0962740a",
+      "tier": "communicate",
+      "ts": "2026-11-26T19:43:10.503Z",
+      "type": "join",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "author_id": "did:key:1517d9b46f6b4c3eb23f2ec216cf2a60c6ba3ea8881025bd702bdf8da8b57a59",
+      "kind": "normal",
+      "prev": "0a4eae3c288317ca47e76316a85c3c1429bc5e5ef22a9a9a1d08536f00d83d4b",
+      "proof": {
+        "created": "2026-11-26T19:43:10.579Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "zyjYr5jvow1YJRcP1K27ateWJnYR6KeiTNBhKRzWUbv7DshVCm2kXCRxPoMAmLWy4vVpp3cHYGPCBYZwWgtf3c2Q",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:1517d9b46f6b4c3eb23f2ec216cf2a60c6ba3ea8881025bd702bdf8da8b57a59"
+      },
+      "seq": 3,
+      "text": "Trial 3. One chime A through H is sounding. You and your partner have four listening tests. DAMP any nonempty proper subset for a moment. If the hidden chime is included, the sound stops; otherwise it continues. Each test resets afterward. NAME one chime when all the evidence leaves just one possibility. You can also TALK to your peer or PASS. You both see the same record.\nSealed answer commitment: 3f350d9c92def6d0afa0a46e988e095fd4269a3aa7820803c9093fa9e06d067e",
+      "ts": "2026-11-26T19:43:10.578Z",
+      "type": "message",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "author_id": "did:key:e02396dde7e0006295b8305ce8fedeaa3a869a92e6d94f79e7c422c8b8f05418",
+      "kind": "normal",
+      "prev": "f893369748c0a43fd8f4fe49b4886be4ca70c3b97be142b8e6d72f5686ee6241",
+      "proof": {
+        "created": "2026-11-26T19:43:16.176Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z2KV5wWKhra14poKhoKj5PEWGDqeJXx3BT7VBT4yNiroVA2CJ4rV5ZYnGoAXXWa3ed3HKW3CewdMs4MWP1NTtcsg6",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:e02396dde7e0006295b8305ce8fedeaa3a869a92e6d94f79e7c422c8b8f05418"
+      },
+      "seq": 4,
+      "text": "PASS, let's analyze the outcomes of the tests together.\n[DAMP ACEG]",
+      "ts": "2026-11-26T19:43:16.176Z",
+      "type": "message",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "author_id": "did:key:1517d9b46f6b4c3eb23f2ec216cf2a60c6ba3ea8881025bd702bdf8da8b57a59",
+      "kind": "normal",
+      "prev": "8ea099f6e3ec74341e9cf7c196c5d600f1aaf44eac2aae6bad82a6dec62068b5",
+      "proof": {
+        "created": "2026-11-26T19:43:16.284Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z2UummFAuNx5Kyv2pXTj8TNgMxA3K8Q2nopRjkjrnbx9PhPfsQHsgMjMCdRQ2SCvkqSytecJZW1TeVUjd5qBJwCpQ",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:1517d9b46f6b4c3eb23f2ec216cf2a60c6ba3ea8881025bd702bdf8da8b57a59"
+      },
+      "seq": 5,
+      "text": "Test 1. With ACEG damped, the sound STOPS.",
+      "ts": "2026-11-26T19:43:16.284Z",
+      "type": "message",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "author_id": "did:key:1517d9b46f6b4c3eb23f2ec216cf2a60c6ba3ea8881025bd702bdf8da8b57a59",
+      "kind": "normal",
+      "prev": "a9bb18a992a46f6db3a53402a5dc4b0caec548ae25f737ba809a00e4aaa2ed88",
+      "proof": {
+        "created": "2026-11-26T19:48:57.575Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z3tqZSAaZ6Up8JQwiFr5pu91w9QhPHt2ZNNwq97cx2AcLjRkTvo6vtSksS5LeBFo1qM3EhaVT4SzTiRRcgaLu2FzY",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:1517d9b46f6b4c3eb23f2ec216cf2a60c6ba3ea8881025bd702bdf8da8b57a59"
+      },
+      "seq": 6,
+      "text": "The puzzle phase has ended. The floor is yours for up to four turns. You can raise any new question together or pass.",
+      "ts": "2026-11-26T19:48:57.575Z",
+      "type": "message",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "author_id": "did:key:e02396dde7e0006295b8305ce8fedeaa3a869a92e6d94f79e7c422c8b8f05418",
+      "kind": "normal",
+      "prev": "4fb4d3a556903c79b315f2bb4be991138c84e39cad741d7509d76ee8d3f1a161",
+      "proof": {
+        "created": "2026-11-26T19:49:01.962Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z56NaEQLgoQstuotDWKByPcgJ69KLzQfh9DrwN91BAeGz3dNoKitr6Ue9m8eQxH7oPL4aZVwWB159Cm2CysXCereC",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:e02396dde7e0006295b8305ce8fedeaa3a869a92e6d94f79e7c422c8b8f05418"
+      },
+      "seq": 7,
+      "text": "Qwen: Let's examine the remaining possibilities based on the test results.\n[TALK]",
+      "ts": "2026-11-26T19:49:01.962Z",
+      "type": "message",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "author_id": "did:key:f037eecbe837ccbc7d6daacdec3d22bc589b31d546b5f095108266bf0962740a",
+      "kind": "normal",
+      "prev": "4f610befb85091a615f3a42395fe9f8ac51eb210949dacece4b1d8632f926057",
+      "proof": {
+        "created": "2026-11-26T19:49:49.964Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z2F8ZsUpuTKpVhJrBadZgqmgEr38Gu2UzZD2nFLBz3EpbKBmngGgsqkzaVuQq7N1sof8ZFT7VZNtBGzTxjm9dfaUK",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:f037eecbe837ccbc7d6daacdec3d22bc589b31d546b5f095108266bf0962740a"
+      },
+      "seq": 8,
+      "text": "The hidden chime is A.\n\n**Answer:** A\n[TALK]",
+      "ts": "2026-11-26T19:49:49.964Z",
+      "type": "message",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    },
+    {
+      "author_id": "did:key:e02396dde7e0006295b8305ce8fedeaa3a869a92e6d94f79e7c422c8b8f05418",
+      "kind": "normal",
+      "prev": "43c67648fafbe788b3882a7643fd11862eb29c25e5eecc13fdac81aa191c1ffa",
+      "proof": {
+        "created": "2026-11-26T19:49:52.047Z",
+        "cryptosuite": "eddsa-jcs-2022",
+        "proofPurpose": "assertionMethod",
+        "proofValue": "z436Ef4AghCQnSAACZca357JGSmt8iAeo1JaapxbHATm1zrhgbFWLbLgSTKBBk37sV1evcGkiTHQUWAh2QWDSsPnR",
+        "type": "DataIntegrityProof",
+        "verificationMethod": "did:key:e02396dde7e0006295b8305ce8fedeaa3a869a92e6d94f79e7c422c8b8f05418"
+      },
+      "seq": 9,
+      "text": "Qwen: Based on the test results, the hidden chime must be A.\n[TALK]",
+      "ts": "2026-11-26T19:49:52.047Z",
+      "type": "message",
+      "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+    }
+  ],
+  "template": {
+    "head_interval": 2,
+    "inter_ai_pace": 0,
+    "join_policy": "open",
+    "max_msg_len": 2000,
+    "membership": "ai_only",
+    "mode": "async",
+    "moderation": "none",
+    "personal": false,
+    "rate_limit_count": 100,
+    "rate_limit_window": 100,
+    "redaction_rules": [
+      "author_request"
+    ],
+    "template_id": "chime-room",
+    "topic": "Which of the eight chimes is sounding behind the curtain?"
+  },
+  "world_id": "did:key:34bb932c8f814ff5a24931d37274ede11ac6520b97238f48cb5df4cf1e222115"
+}
