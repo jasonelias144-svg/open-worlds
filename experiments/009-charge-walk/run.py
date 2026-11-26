@@ -36,9 +36,12 @@ def prompt(state, track, tick, previous, assigned, first):
     return "\n".join(rows)
 
 
-def request(model, message, options, seed):
+def request(model, message, options, seed, preview=None):
     ordered = sorted(options)
     random.Random(seed).shuffle(ordered)
+    if preview is not None:
+        message += "\nInstrument preview of next (A,B) sites, in menu order: " + "; ".join(
+            f"{choice} -> {preview[choice]}" for choice in ordered if choice != "leave")
     instruction = message + "\nLegal choices: " + ", ".join(ordered) + ". Reply with your selection."
     return {"model": ENDPOINT[model][1], "prompt": "<｜User｜>" + instruction
             + "<｜Assistant｜><think>\n\n</think>\n\n", "json_schema": {"type": "object",
@@ -60,17 +63,20 @@ def play(mode, saved=None):
     state, track = State(), Track()
     frames, calls = [], []
     stop = "tick limit"
-    seats = [("7B", "both")] if mode == "solo" else [("1.5B", "A"), ("7B", "B")]
+    seats = [("7B", "both")] if mode in ("solo", "preview") else [("1.5B", "A"), ("7B", "B")]
     for tick in range(1, 17):
         charges = []
         for model, assigned in seats:
             options = set(PAIRS if assigned == "both" else CHARGES) | {"leave"}
             message = prompt(state, track, tick, frames[-1] if frames else None, assigned,
                              charges[0] if charges else None)
+            preview = None
+            if mode == "preview":
+                preview = {label: step(state, qs, track, tick)[1]["positions"] for label, qs in PAIRS.items()}
             choice = None
             for attempt in range(2):
                 seed = 2026 + 19 * tick + len(charges) * 3 + attempt
-                body = request(model, message, options, seed)
+                body = request(model, message, options, seed, preview)
                 if saved is None:
                     try:
                         response = complete(model, body)
@@ -114,7 +120,7 @@ def play(mode, saved=None):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("mode", choices=("controls", "solo", "pair", "verify"))
+    parser.add_argument("mode", choices=("controls", "solo", "pair", "preview", "verify"))
     parser.add_argument("path", type=Path)
     args = parser.parse_args()
     if args.mode == "verify":
@@ -122,7 +128,7 @@ def main():
         if isinstance(record, list):
             expected = controls()
         else:
-            if record["name"] not in ("solo", "pair"):
+            if record["name"] not in ("solo", "pair", "preview"):
                 raise ValueError("unknown controller")
             expected = play(record["name"], record["calls"])
         if record != expected:
@@ -131,7 +137,7 @@ def main():
         return
     with args.path.open("x") as file:
         data = controls() if args.mode == "controls" else play(args.mode)
-        json.dump(data, file, ensure_ascii=False, separators=(",", ":"))
+        json.dump(data, file, ensure_ascii=False, indent=2)
         file.write("\n")
 
 
