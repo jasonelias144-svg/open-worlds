@@ -56,7 +56,7 @@ def schedule(moderated, history):
             yield MOD, other
 
 
-def request(name, target, history, repair=None):
+def request(name, target, history, repair=None, check_facts=False):
     transcript = "\n".join(f"{n}: {w}" for n, w in history) or "(The floor is open.)"
     body = {"model": MODELS[name], "temperature": 0.6, "seed": 42, "max_tokens": 448}
     if name == MOD:
@@ -70,6 +70,14 @@ def request(name, target, history, repair=None):
             'an exact short phrase from the last answer. In question write the words you want the guest '
             'to hear. To pass, use an empty anchor and PASS as the question.'
         )
+        if check_facts:
+            text += (
+                "\nBefore asking, compare the last answer against the fixed facts in the public brief. "
+                "When they conflict, state the actual fixed fact in your question and ask the next "
+                "guest for ONE concrete repair. If a claim cannot be checked from the public facts, "
+                "ask for the missing observation. If all fits, ask for the next unresolved choice. "
+                "Do not adopt a mistaken premise merely because a guest said it."
+            )
         if repair:
             text += f'\nYour first draft was: {repair[0]}\nPlease try once more. {repair[1]}'
         body.update(max_tokens=190, temperature=0.3, seed=43 if repair else 42,
@@ -112,10 +120,10 @@ def interpret(name, call, history):
     return "post", words
 
 
-def turn(name, target, history, get):
+def turn(name, target, history, get, check_facts=False):
     repair = None
     for _ in range(2 if name == MOD else 1):
-        call = get(request(name, target, history, repair))
+        call = get(request(name, target, history, repair, check_facts))
         if call["model"] != MODELS[name]:
             raise ValueError("Endpoint returned a different model.")
         try:
@@ -133,11 +141,11 @@ def infer(body, name):
             "usage": result["usage"]}
 
 
-def play(folder, plugin, moderated):
+def play(folder, plugin, moderated, check_facts=False):
     folder.mkdir(exist_ok=False)
     with ExitStack() as stack:
         keeper, guests, names, room, log = create_room(stack, plugin, CAST, BRIEF, "harbor-recording")
-        save(folder / "identities.json", {"keys": names, "room": room, "moderated": moderated})
+        save(folder / "identities.json", {"keys": names, "room": room, "moderated": moderated, "check_facts": check_facts})
         save(folder / "room.json", log)
         history = []
         offers = schedule(moderated, history)
@@ -158,7 +166,7 @@ def play(folder, plugin, moderated):
                     return call
 
                 try:
-                    action, words = turn(name, target, seen, get)
+                    action, words = turn(name, target, seen, get, check_facts)
                     entry["action"] = action
                     if words is not None:
                         op = guest.call("post_as_participant", room_id=room, text=words, kind="normal")
@@ -212,7 +220,7 @@ def verify(folder, plugin=None):
                 raise ValueError("Prompt differs from guest observation.")
             return call
 
-        action, words = turn(*offer, history, recorded)
+        action, words = turn(*offer, history, recorded, ids.get("check_facts", False))
         if next(calls, None) or action != e["action"]:
             raise ValueError("Unexplained inference or action.")
         if action == "post":
@@ -235,10 +243,10 @@ def verify(folder, plugin=None):
 
 if __name__ == "__main__":
     p = argparse.ArgumentParser(description=__doc__)
-    p.add_argument("mode", choices=("moderated", "control", "verify"))
+    p.add_argument("mode", choices=("moderated", "control", "fact-check", "verify"))
     p.add_argument("folder", type=Path)
     p.add_argument("--plugin", type=Path, required=True)
     args = p.parse_args()
     if args.mode != "verify":
-        play(args.folder, args.plugin.resolve(), args.mode == "moderated")
+        play(args.folder, args.plugin.resolve(), args.mode != "control", check_facts=args.mode == "fact-check")
     print("Verified", len(verify(args.folder, args.plugin.resolve())), "public posts.")

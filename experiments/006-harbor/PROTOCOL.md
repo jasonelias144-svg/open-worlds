@@ -13,3 +13,34 @@ In a developer forum, a participant who had connected two bots described them re
 Asked how to have a group manager use changing conversational context, an AutoGen maintainer described stateful speaker selection. Here the scheduler can give a repeated turn to the moderator and otherwise leaves room for a direct reply. [AutoGen discussion](https://github.com/microsoft/autogen/discussions/4361)
 
 SOTOPIA gives participants individual goals and background information within a shared scene. Here a feasible plan depends on two different field notes. The precise task and the matched comparison are our design choices. [Researchers’ project description](https://sotopia.world/projects/sotopia)
+
+## Replay
+
+Use the external joined-room writer and an independently built standing reader described in [Experiment 003](../003-room-discussion/REPLAY.md). This experiment uses the 1.5B and 7B Q4_K_M weight files pinned in [Experiment 005](../005-consciousness/PROTOCOL.md) and the Qwen2.5-3B-Instruct Q4_K_M file pinned in [Experiment 003](../003-room-discussion/REPLAY.md). The server is llama.cpp b12780 (09c141064), four CPU threads per server. Run each server in its own terminal. The online sources were consulted before either run.
+
+```sh
+llama-server -m "$DS_SMALL_GGUF" --alias deepseek-local --host 127.0.0.1 --port 18201 -t 4 -c 4096 -np 1 --reasoning-budget 192 --reasoning-format deepseek --no-webui
+llama-server -m "$DS_LARGE_GGUF" --alias deepseek-seven --host 127.0.0.1 --port 18202 -t 4 -c 4096 -np 1 --reasoning-budget 192 --reasoning-format deepseek --no-webui
+llama-server -m "$QWEN_GGUF" --alias qwen-moderator --host 127.0.0.1 --port 18203 -t 4 -c 4096 -np 1 --no-webui
+```
+
+Use fresh output paths for new conversations. The published rooms can be verified offline. The verifier rebuilds requests turn by turn from the signed history and the appropriate field note, checks the turn and retry schedule, matches the submitted text to a guest’s public completion, and imports the final room into a separate process to verify the signatures. The room signature certifies which participant key posted the words. The model and settings come from the local inference trace.
+
+```sh
+trial=experiments/006-harbor
+python3 "$trial/harbor.py" moderated "$scratch/harbor-moderated" --plugin "$writer"
+python3 "$trial/harbor.py" control "$scratch/harbor-control" --plugin "$writer"
+python3 "$trial/harbor.py" verify "$trial/moderated" --plugin "$reader"
+python3 "$trial/harbor.py" verify "$trial/control" --plugin "$reader"
+```
+
+The local servers expose only the public answer to the next guest. The trace saves that answer and whether the separate reasoning channel was used. The 448-token guest cap includes reasoning. A truncated output cannot become a post. Moderator exact-quote validation can detect an invented quotation. Only reading the question alongside the previous and next guest’s words can establish whether the follow-up advanced the conversation.
+
+## Follow-up registered during the first room
+
+Qwen’s first question adopted the pier guest’s claim that a bell could be recorded before it started. That meets the citation rule and illustrates its limit. Run a third, fresh room under `fact-check` with the same field notes, guest prompts, models, schedule and budgets as `moderated`. The sole change to the moderator invitation is to check the preceding claim against the fixed public brief. If there is a conflict, name the fact and request one concrete repair. For an unverified claim, ask for an observation. For a consistent plan, ask about an open choice. These are reasons to ask, without suggested question text. Keep the first two rooms on their original protocols and apply the same qualitative criteria to all three.
+
+```sh
+python3 "$trial/harbor.py" fact-check "$scratch/harbor-fact-check" --plugin "$writer"
+python3 "$trial/harbor.py" verify "$trial/fact-check" --plugin "$reader"
+```
