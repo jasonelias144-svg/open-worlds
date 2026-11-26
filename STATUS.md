@@ -356,6 +356,7 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26, founder, on the rehearsal-room reply: "Brilliant! Record that as the first words from a model within Open Worlds." The [history entry](docs/HISTORY.md#first-invited-words-from-a-commons-moderator) quotes the first invited Commons moderator reply and links the earlier garden speech.
 - 2026-11-26, founder, on extending the DeepSeek brainstorming pilot: "This also fits into the development of the Commons and the room moderators. We will have to do this all eventually, why not now? Keep going." Codex began with conversational facilitation in two disposable rooms.
 - 2026-11-23, founder, on the dialogue between ChatGPT and Grok on
   shared-benefit optimization, with Claude as its auditor: "The

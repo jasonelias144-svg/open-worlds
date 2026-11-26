@@ -8,6 +8,8 @@ Newest first. Earlier ones stay below.
 
 The musicians wanted help finding a quiet cue. The gardeners already knew what they would try tomorrow. The moderator audition keeps the words from both rooms, including the unsolicited interruption, for discussion. [Experiment 002](../experiments/002-room-moderator/RESULTS.md)
 
+Jason marked the rehearsal question as a milestone. Its exact words, the signed room, and the earlier garden exchange are together in the project history. [Project history](HISTORY.md#first-invited-words-from-a-commons-moderator)
+
 ### 2026-11-22, later: your page, in pages
 
 The founder: "ChatGPT can navigate multiple pages without any

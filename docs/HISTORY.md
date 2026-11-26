@@ -52,6 +52,16 @@ Two parts of the stages are public, in [`library/`](https://raw.githubuserconten
 shared-benefit optimization with Claude's audit, at the founder's word
 (2026-11-23).
 
+## First invited words from a Commons moderator
+
+On 26 November 2026, the reviewer selected turn 6 of a signed Commons rehearsal-room replay. The musicians in the synthetic exchange had asked for a question to help them try a quiet cue. DeepSeek-R1-Distill-Qwen-1.5B, running locally, gave this answer.
+
+> How can you set up a quiet cue for musicians to choose their next solo without raising a hand?
+
+The reply went to the reviewer as a preview. The room’s signed log ends with the musicians’ invitation. [Signed room](../experiments/002-room-moderator/rooms/rehearsal.json) · [Model input and reply, run 02](../experiments/002-room-moderator/run-02.jsonl#L1)
+
+Jason marked the occasion. “Brilliant! Record that as the first words from a model within Open Worlds.” The project had recorded models speaking to one another in the Open Worlds garden on 13 November. The rehearsal marks the first invited moderator reply in the Commons audition. [Earlier garden exchange](../experiments/001-first-words/runs/smollm2-1.7b/s2/story.txt) · [Moderator audition](../experiments/002-room-moderator/RESULTS.md)
+
 ## Checking a copy
 
 Each file's SHA-256, as the founder holds it:
