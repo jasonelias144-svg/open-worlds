@@ -102,12 +102,13 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/ADMIN.md/when-each-part-is-built.md
 ```
 
-## `docs/COLLABORATING.md`, in 5 parts
+## `docs/COLLABORATING.md`, in 6 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/start.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/two-sides-the-sketch-and-the-standard.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/code-in-rust.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/since-you-were-last-here.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/the-standard.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/cycles.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-02.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COLLABORATING.md/every-file-by-its-full-link-01.md
 ```
@@ -235,6 +236,27 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/exper
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/004-chime-room/trial-3/turns.jsonl/01.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/004-chime-room/trial-3/turns.jsonl/02.txt
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/004-chime-room/trial-3/turns.jsonl/03.txt
+```
+
+## `experiments/009-charge-walk/pair.json`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/009-charge-walk/pair.json/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/009-charge-walk/pair.json/02.txt
+```
+
+## `experiments/009-charge-walk/preview.json`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/009-charge-walk/preview.json/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/009-charge-walk/preview.json/02.txt
+```
+
+## `experiments/009-charge-walk/solo.json`, in 2 parts
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/009-charge-walk/solo.json/01.txt
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/experiments/009-charge-walk/solo.json/02.txt
 ```
 
 ## `formats/record_vectors.py`, in 2 parts
@@ -404,6 +426,8 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/world
 
 Longer than 28,000 bytes, and not cut:
 
+- `experiments/009-charge-walk/pilots.gif`: not text.
+- `experiments/009-charge-walk/walk.gif`: not text.
 - `rust/Cargo.lock`: the lock file cargo writes.
 - `vectors/` (11 of its files): test vectors, which programs check and nobody reads through.
 - The files of record, which [docs/FILES.md](../docs/FILES.md)
