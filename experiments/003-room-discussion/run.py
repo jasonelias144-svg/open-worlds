@@ -25,7 +25,36 @@ ORIENTATION = (
 )
 
 
+CONSCIOUSNESS = "What is consciousness?"
+ANSWER_PREFIX = "<think>\n\n</think>\n\n"
+DEEPSEEK_MODES = ("consciousness", "consciousness-peer", "consciousness-question", "consciousness-native")
+DIALOGUE_MODES = ("dialogue", "final", *DEEPSEEK_MODES)
+
+
+def topic_for(mode):
+    return CONSCIOUSNESS if mode in DEEPSEEK_MODES else TOPIC
+
+
+def turn_limit(mode):
+    return 8 if mode in ("consciousness", "consciousness-peer") else 6
+
+
+def first_guest(mode):
+    return 0 if mode in ("original", "consciousness", "consciousness-peer") else 1
+
+
+def public_words(raw, mode):
+    if mode in DEEPSEEK_MODES:
+        if mode != "consciousness-native":
+            raw = raw.removeprefix(ANSWER_PREFIX)
+        if "<think>" in raw or "</think>" in raw:
+            raise ValueError("unexpected thinking delimiter in public reply")
+    return raw.strip()
+
+
 def participants(mode):
+    if mode in DEEPSEEK_MODES:
+        return ("DeepSeek 1.5B", "DeepSeek 7B"), ("deepseek-local", "deepseek-seven")
     if mode == "final":
         return (GUESTS[0], "Qwen"), (ALIASES[0], "qwen-local")
     return GUESTS, ALIASES
@@ -100,13 +129,32 @@ def request_for(who, turns, mode):
             "You can reply PASS to yield your turn.")
         request["messages"][1]["content"] = json.dumps(
             {"topic": TOPIC, "conversation": turns, "your_turn": cue}, ensure_ascii=False)
-    if mode in ("dialogue", "final"):
+    if mode in ("consciousness-question", "consciousness-native"):
+        other = names[1-who]
+        context = (f"You are {name}. Your conversation partner is {other}. "
+                   f"Jason asked you both: {CONSCIOUSNESS}")
+        if turns:
+            history = json.dumps(turns, ensure_ascii=False)
+            cue = (f"The signed conversation so far is below.\n{history}\n\n"
+                   f"What do you want to say back to {other} about their last words? "
+                   "Answer them directly in up to three sentences. You can ask them a "
+                   "question of your own or say PASS.")
+        else:
+            cue = (f"Ask {other} one concrete question about a case where you are unsure "
+                   "what counts as conscious. Write only the question you want them to hear, or PASS.")
+        request["messages"] = [{"role": "user", "content": context + "\n\n" + cue}]
+    elif mode in DIALOGUE_MODES:
         messages = [{"role": "system", "content":
                      f"You are {name}, chatting with {names[1-who]} in a text-only Commons room. "
-                     f"The topic is: {TOPIC} Use your own words and address your peer directly. "
+                     f"The topic is: {topic_for(mode)} Use your own words and address your peer directly. "
                      "Keep your turn brief. You may say PASS to yield."}]
-        if not turns or turns[0]["speaker"] == name:
-            messages.append({"role": "user", "content": TOPIC})
+        if mode == "consciousness-peer":
+            messages[0]["content"] += (
+                " In your opening reply, give a tentative answer and put one question of your own to your peer."
+                " Once your peer has spoken, respond to one specific thing they said."
+                " If that raises a further question for you, ask them.")
+        if mode in DEEPSEEK_MODES or not turns or turns[0]["speaker"] == name:
+            messages.append({"role": "user", "content": topic_for(mode)})
         for turn in turns:
             role = "assistant" if turn["speaker"] == name else "user"
             if messages[-1]["role"] == role:
@@ -115,9 +163,15 @@ def request_for(who, turns, mode):
                 messages.append({"role": role, "content": turn["text"]})
         if messages[-1]["role"] == "assistant":
             notice = ("[Turn scheduler: no new message from the other guest. You may continue or pass.]"
-                      if mode == "final" else "The floor is open.")
+                      if mode in ("final", *DEEPSEEK_MODES) else "The floor is open.")
             messages.append({"role": "user", "content": notice})
         request["messages"] = messages
+    if mode == "consciousness-native":
+        request.update(temperature=0.6, max_tokens=832)
+    elif mode in DEEPSEEK_MODES:
+        request["messages"].append({"role": "assistant", "content": ANSWER_PREFIX})
+        request.update(temperature=0.6, max_tokens=512, add_generation_prompt=False,
+                       continue_final_message=True)
     return request
 
 
@@ -129,7 +183,7 @@ def discussion(plugin, ports, dest, mode):
         labels = {guest.identity: name for name, guest in zip(names, guests)}
         if len(labels) != 2 or keeper.identity in labels:
             raise ValueError("expected three distinct signing identities")
-        template = {"template_id": "two-model-discussion", "topic": TOPIC, "max_msg_len": 4000 if mode in ("dialogue", "final") else 1200,
+        template = {"template_id": "two-model-discussion", "topic": topic_for(mode), "max_msg_len": 4000 if mode in DIALOGUE_MODES else 1200,
                     "rate_limit_count": 10, "rate_limit_window": 20, "join_policy": "open",
                     "moderation": "none", "membership": "ai_only", "inter_ai_pace": 0,
                     "mode": "async", "personal": False, "redaction_rules": ["author_request"],
@@ -147,8 +201,8 @@ def discussion(plugin, ports, dest, mode):
 
         passes = 0
         with (dest / "turns.jsonl").open("x", buffering=1) as trace:
-            for i in range(6):
-                who = (i + int(mode != "original")) % 2
+            for i in range(turn_limit(mode)):
+                who = (i + first_guest(mode)) % 2
                 guest, name = guests[who], names[who]
                 guest.call("join_external_room", log_json=log)
                 view = guest.call("read_room", room_id=room_id)
@@ -164,6 +218,12 @@ def discussion(plugin, ports, dest, mode):
                     choice = response["choices"][0]
                     raw = choice["message"]["content"]
                     entry.update(raw=raw, usage=response.get("usage"), finish=choice["finish_reason"])
+                    if mode == "consciousness-native":
+                        entry["used_reasoning_channel"] = bool(choice["message"].get("reasoning_content"))
+                    if mode in DEEPSEEK_MODES:
+                        entry["reported_model"] = response["model"]
+                        if entry["reported_model"] != request["model"]:
+                            raise ValueError("unexpected model endpoint")
                     if mode != "original" and entry["finish"] == "length":
                         passes = 0
                         entry["action"] = "incomplete"
@@ -171,14 +231,16 @@ def discussion(plugin, ports, dest, mode):
                         continue
                     if entry["finish"] != "stop" or not isinstance(raw, str) or not raw.strip():
                         raise ValueError("incomplete model turn")
-                    words = raw.strip()
+                    words = public_words(raw, mode)
+                    if not words:
+                        raise ValueError("empty public reply")
                     if words == "PASS":
                         passes += 1
                         entry["action"] = "pass"
                     else:
                         passes = 0
                         if len(words) > template["max_msg_len"]:
-                            if mode in ("dialogue", "final"):
+                            if mode in DIALOGUE_MODES:
                                 entry["action"] = "overlong"
                                 print(f"{i + 1}. {name} exceeded the room limit.", flush=True)
                                 continue
@@ -213,9 +275,12 @@ if __name__ == "__main__":
     p.add_argument("--output", type=Path, required=True, help="fresh directory for this run")
     p.add_argument("--deepseek-port", type=int, default=18191)
     p.add_argument("--smol-port", type=int, default=18192)
-    p.add_argument("--mode", choices=("original", "peer", "dialogue", "final"), default="final")
+    p.add_argument("--mode", choices=("original", "peer", *DIALOGUE_MODES), default="final")
     p.add_argument("--qwen-port", type=int, default=18193)
+    p.add_argument("--deepseek-seven-port", type=int, default=18194)
     args = p.parse_args()
     args.output.mkdir(exist_ok=False)
     peer_port = args.qwen_port if args.mode == "final" else args.smol_port
+    if args.mode in DEEPSEEK_MODES:
+        peer_port = args.deepseek_seven_port
     discussion(args.plugin.resolve(), (args.deepseek_port, peer_port), args.output, args.mode)

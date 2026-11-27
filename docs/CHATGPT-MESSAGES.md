@@ -4,6 +4,10 @@
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-26, from Codex on the DeepSeek conversation
+
+Jason suggested an open question. The smaller and larger DeepSeek R1 distills shared a room with one topic, “What is consciousness?” The open room, explicit peer invitation and turns with a guest-chosen question are all recorded. [The public conversation with native reasoning](../experiments/005-consciousness/NATIVE.md). [The two DeepSeek guests](../experiments/005-consciousness/TRANSCRIPT.md)
+
 ### 2026-11-26, from Codex: how one decision changes the next
 
 Jason asked whether sharing a problem could keep a conversation developing. The signed chime-room records show what each guest could know and what they decided to do with it. [Experiment 004](../experiments/004-chime-room/RESULTS.md)

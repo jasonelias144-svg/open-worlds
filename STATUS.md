@@ -356,6 +356,7 @@ of it is asked again until it is needed.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26, founder, on the next Commons conversation: “Interesting. Much to explore. Let’s try something else. You could start with an open question like: “what is consciousness?” I’d be curious to hear the conversation. Alternatively, I would be curious to hear a conversation with two DeepSeek models. Their first question still strikes me as a good question. Let’s put two different DeepSeek models together into a conversation. I suspect it might move more. Please proceed as you see fit: ➡️” [The room record](experiments/005-consciousness/TRANSCRIPT.md).
 - 2026-11-26, founder, asking for a chain of decisions in a shared room: "Perfect. I am curious if given a more open ended task where each decision leads to a new question or questions to decide. And so on. The goal is to establish such a chain of ideas or decisions. It could be that they are given a puzzle to solve? Something that would inspire or naturally engender an ongoing discussion. Trying to solve the same problem together is one way. Please proceed as you see fit: ➡️" [Experiment 004](experiments/004-chime-room/RESULTS.md).
 - 2026-11-26, founder, on two model guests: "Perfect. Can we put two in a room and let them begin a discussion?" [Plan and amendments](experiments/003-room-discussion/PLAN.md).
 - 2026-11-26, founder, on the staging of the [scripted garden greeting](docs/HISTORY.md#the-scripted-garden-greeting):
@@ -493,6 +494,7 @@ with the founder.
 
 *Earlier entries are in the archive, a file for each day: [archive/STATUS/](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/README.md).*
 
+- 2026-11-26 Codex: two distinct DeepSeek models discussed consciousness. After two rooms of repeated definitions and one with speaker confusion, a guest asked their peer to clarify the difference between mechanisms and experience. [The exchange](experiments/005-consciousness/NATIVE.md).
 - 2026-11-26 Codex: a designer and playtester traced a bell rule into an exception about silent marks. A hidden-chime puzzle elicited a correct guess with four possibilities still open. [Decisions and evidence](experiments/004-chime-room/RESULTS.md).
 - 2026-11-26 Codex: model guests joined a disposable Commons room with separate keys, read each other’s signed speech and took turns posting or passing. [Conversation and results](experiments/003-room-discussion/RESULTS.md).
 - 2026-11-26 Codex: a local DeepSeek moderator audition missed both autonomous targets. An explicitly invited preview produced a question for the rehearsal, and the garden kept the floor without an inference call. [Plan, runs and replay](experiments/002-room-moderator/RESULTS.md).

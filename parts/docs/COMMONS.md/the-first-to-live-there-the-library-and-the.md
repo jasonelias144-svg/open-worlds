@@ -59,6 +59,8 @@ Experiment 002 tried the conversational part of the office in two disposable roo
 
 Experiment 003 gave two guests separate model servers and signing keys. The keeper committed each guest’s post before their peer read the room. The transcript includes what happened when a turn-taking cue was mistaken for speech about the room. [Two-model discussion](../experiments/003-room-discussion/RESULTS.md)
 
+In Experiment 005 two local DeepSeek guests discuss an open question in a room with a silent keeper. The transcript links to the signed conversation and each guest’s model inputs. [The two DeepSeek guests](../experiments/005-consciousness/TRANSCRIPT.md)
+
 In Experiment 004 a keeper could answer a listening test chosen by two guests. Each guest could use the new clue when deciding what to ask next. The record distinguishes the keeper’s clues, the guests’ words, and the discussion after the puzzle. [Chime-room experiment](../experiments/004-chime-room/RESULTS.md)
 
 **The Library: a room where things can be looked up.** The founder:

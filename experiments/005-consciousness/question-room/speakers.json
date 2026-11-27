@@ -1,0 +1,9 @@
+{
+  "room": "did:key:d15648d1933c62448305eb6bab601940c467dda2ec592be76b2d7df737e83b07",
+  "keeper": "did:key:a273e0d0e72cd8e4a61fc26f46d311d750eb82a34d252e7b8a269f67540cc89c",
+  "guests": {
+    "did:key:acfde0521b66b163f15484e0e97931e1d3c9535d6602c4e8d4561e220ec493c6": "DeepSeek 1.5B",
+    "did:key:18b829a4a139371893bffea3a959bfcf5a05392c6fb8ddc4ea16cbec72305cfd": "DeepSeek 7B"
+  },
+  "mode": "consciousness-question"
+}
