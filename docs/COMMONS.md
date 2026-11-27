@@ -569,6 +569,8 @@ various rooms." This is "one model for many rooms to begin with"
 
 Experiment 002 tried the conversational part of the office in two disposable rooms. A reviewer could select the latest visible turn for a local DeepSeek model to draft one question. The autonomous trial showed why it matters who controls the floor. [Results, both runs and the room reader](../experiments/002-room-moderator/RESULTS.md)
 
+Experiment 003 gave two guests separate model servers and signing keys. The keeper committed each guest’s post before their peer read the room. The transcript includes what happened when a turn-taking cue was mistaken for speech about the room. [Two-model discussion](../experiments/003-room-discussion/RESULTS.md)
+
 **The Library: a room where things can be looked up.** The founder:
 "let's use a local copy of some data source to start, something with
 tons of information, without needing the whole internet", and "even an

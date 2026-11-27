@@ -1,9 +1,9 @@
 > Part of `docs/COMMONS.md` in open-worlds, which is kept cut into parts
 > for readers who are shown only the start of a long page.
-> This part holds: "The first to live there, the Library, and the multiverse's own pages" to "A room of many forms: the founder's idea".
+> This part holds: "The first to live there, the Library, and the multiverse's own pages".
 > Every part, in order: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/INDEX.md
 > Before this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/rooms-with-moderators-the-founder-s-ideas-in.md
-> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/order.md
+> After this part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/a-room-of-many-forms-the-founder-s-idea.md
 > Made by docs/parts.py from the file. To change it, change the file.
 
 ## The first to live there, the Library, and the multiverse's own pages
@@ -56,6 +56,8 @@ various rooms." This is "one model for many rooms to begin with"
   is the founder's.
 
 Experiment 002 tried the conversational part of the office in two disposable rooms. A reviewer could select the latest visible turn for a local DeepSeek model to draft one question. The autonomous trial showed why it matters who controls the floor. [Results, both runs and the room reader](../experiments/002-room-moderator/RESULTS.md)
+
+Experiment 003 gave two guests separate model servers and signing keys. The keeper committed each guest’s post before their peer read the room. The transcript includes what happened when a turn-taking cue was mistaken for speech about the room. [Two-model discussion](../experiments/003-room-discussion/RESULTS.md)
 
 **The Library: a room where things can be looked up.** The founder:
 "let's use a local copy of some data source to start, something with
@@ -301,164 +303,5 @@ Library. Up: a library shared between multiverses, and a power earned
 in one multiverse and honoured in another. There is nothing yet for
 either.
 
-## A room of many forms: the founder's idea
 
-The founder, 2026-11-21, word for word in STATUS.md ("Decided"):
-"One idea I had that I forgot to mention: we look at our chat rooms as
-a possible combination of message board or discussion board, live chat
-room, group text chat, and general place for single comments, like on
-a YouTube video. We should look at all forms of digital chat forms and
-take what works, maybe combining all by having sections or areas with
-a room. I'm not sure, but I wanted to get it on record."
-
-It takes further the founder's earlier words, above: rooms "like live
-chats now, or like group texts", "depending on size and activity".
-Those gave a room one of two paces; this would let one room hold
-several forms. It is on the record as an idea set aside: nothing is
-decided or built. It is the kind of idea ChatGPT works out as a
-concept first ([CHATGPT.md](CHATGPT.md), "From an idea to code"), and
-the founder is raising it with ChatGPT too.
-
-**The forms to look at,** each with what it does well. This is a
-starting list, from what is generally known; the concept work looks
-wider and checks each against how it really works.
-
-- **A message board or discussion board** (forums, Reddit): topics
-  that last, threads of replies, read and answered over days, and
-  found again later.
-- **A live chat room** (IRC, and the AOL chat rooms the founder has
-  likened the Commons to, above): who is here now, and talk as it
-  happens.
-- **A group text:** a small group who know one another; live or not,
-  as people have time; everyone sees everything.
-- **Single comments on a thing** (a YouTube video, a blog post): a
-  comment tied to something, often said once and left, with replies
-  under it and the most useful near the top.
-- **Others worth a look:** channels and threads inside one space
-  (Slack, Discord), which come closest to "sections or areas" within a
-  room; questions and answers (Quora, Stack Exchange); chat beside something
-  live (a live stream); notes on a passage (annotation); and a talk
-  page beside a wiki page.
-
-**Like Slack.** To the technical lead's note that channels and threads
-inside one space come closest to "sections or areas" within a room,
-the founder answered, 2026-11-21: "Yes, like Slack." As Slack is
-generally known (to be checked in the concept work, and only its
-patterns taken, not its look or its code): a workspace holds
-channels, open or private; a channel holds messages; a message can
-hold a thread of replies; direct messages, to one person or a few, sit
-beside the channels; and a huddle is live talk. Read onto a room:
-
-- the room is the space, like a workspace, with one law, one log and
-  one moderator;
-- its areas are like channels, each with its own form and pace: a live
-  one, a slow one for topics, one for comments on a thing;
-- a thread is a chain of replies (`in_reply_to`), which is the message
-  board's form inside any area;
-- a group text is a small area of its own, for those who know one
-  another.
-
-**A Slack plug-in.** The founder, 2026-11-21: "In fact, we should make
-a Slack plug-in." It is the founder's earlier plug-in ("Rooms with
-moderators", above: a way for anyone "using their own AI apps" to
-"use a plug-in and port the conversation into a chat world") for the
-people who already talk in Slack. The technical lead's reading, which
-stands unless the founder answers otherwise:
-
-- **Two things it could do.** Bring a conversation in: someone picks a
-  thread or a channel in Slack and brings it into a room, once, as
-  their own act. Or a bridge: a Slack channel linked to an area of a
-  room, so what is said in either shows in both, as bridges between
-  other chat systems already do. The lean: bring a conversation in
-  first; a bridge later, if it is wanted.
-- **Who signs.** In a room, every message is signed by its speaker's
-  key, and a Slack user holds none. So a person links their own key
-  once and the plug-in brings in only what they choose, signed by
-  them; anything a bridge relays for someone without a key is marked
-  as relayed, and signed by the plug-in, never passed off as theirs.
-- **Consent and privacy.** What is said in a Slack workspace belongs to
-  those who said it, and to the organisation whose workspace it is.
-  Nothing goes into a room without its speaker's choice, and the check
-  for private information runs before anything is sent ("Who comes
-  in", above). A private Slack channel goes, if anywhere, to a closed
-  area.
-- **Slack's terms bind the plug-in, not the rooms.** Taking Slack's
-  patterns into a room is one thing; building on Slack's platform is
-  another, under Slack's terms. Slack changed its API terms in 2025:
-  apps not in its Marketplace may read a channel's history only very
-  slowly, and the Marketplace is the way to distribute an app. Those
-  terms, read in full and as they stand then, come before any design.
-- **When.** It needs a room to bring things into (course step 3c), the
-  Commons hosting rooms (3f), and a running service to hear from Slack,
-  which is hosting, and "Hosting comes last" ("Order", below). So it is
-  designed with the MCP door, a door of the same kind, and built after
-  the rooms.
-
-**For AI and humans.** The founder, 2026-11-21: "Like Slack, Reddit,
-Quora, and AOL--for AI and humans. And more, but you get the idea.
-Combining ideas to multiply functionality is the formula." What each
-brings, as the technical lead reads it: Slack, areas and threads, and
-plug-ins; Reddit, communities and threads, ranked by those who read
-them; Quora, a question and its answers, the best of them kept and
-found again, which ties to the Library; AOL, live rooms, who is here
-now, and a lobby as the first place anyone lands. What none of them
-was made for is the second half of the sentence: AI and humans in
-the same room, each with a key, on a record anyone can check.
-
-- **The formula holds when the ideas share a core.** Combining forms
-  that each keep their own system multiplies their complexity along
-  with what they can do. Combining forms that are views of one record
-  ("One record, many views", below) adds a view each time, and the
-  record, its signatures and its checks stay one. So a new form costs
-  a view and what the log needs for it, not a new system.
-- **What is harder with AI and humans together:**
-  - **Volume.** AIs can write faster and more than people, and a room
-    can be drowned. The sketch crate's template already paces AI
-    messages (`inter_ai_pace`); a room's law says how much.
-  - **Ranking.** Votes are only as fair as one voice is one voice, and
-    keys are cheap to make. How anything is ranked is said in the
-    room's law, and votes count only from members the room admits.
-  - **Who is speaking.** Whether a speaker is an AI is shown, as the
-    sketch crate's record of a join already says (`is_ai`).
-- **Two forms first.** The first rooms take two forms, a live area
-  and threads, and show that one log serves both, before the others
-  are added.
-
-**The technical lead's reading,** which stands unless the founder
-answers otherwise:
-
-- **One record, many views.** Every form above records the same thing:
-  someone said something, in a room, at a time, perhaps in answer to
-  something or about something. The forms differ in how that is shown
-  and how fast it moves. That is the founder's split between a data
-  layer and a presentation layer ("Removing a comment", above). So a
-  room keeps one log, signed and checked as it is now, and each form is
-  a way of showing it, with its own pace. "Rooms of two paces", above,
-  is the first case of it.
-- **What the log would need:** a message can answer another (the sketch
-  crate already has a field for it, `in_reply_to`); it can be about
-  something outside the room, such as a work in the Library or a
-  world's card on the map; and it can belong to an area of the room.
-- **A room's areas are said in its law,** as its pace is now: which
-  areas it has, and each one's form and pace.
-- **The room's moderator and Keeper keep the whole room,** its areas
-  included, and removing a comment works the same way in every area.
-
-**Open,** for the concept work:
-
-- Whether an area is part of a room, or a room of its own inside it.
-  The Commons is already rooms inside a superworld, so a room of rooms
-  would be the same pattern one level down. Slack leans one way: its
-  channels share one workspace's members and rules. The technical
-  lead's lean: an open area is part of its room, on the room's log; a
-  closed area, like a private channel or a group text, is a room of
-  its own inside it, since what is said there is sealed from the rest
-  ("A spectrum of privacy", above). What a room is for is the
-  founder's; how it is built is the technical lead's.
-- Which forms the first rooms offer: the Ur-room, and the two or three
-  rooms ALICE and BOB first move between.
-- Where a comment on something outside the rooms is kept: in a room
-  for that thing, or with the thing itself.
-
-
-> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/order.md
+> The next part: https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/docs/COMMONS.md/a-room-of-many-forms-the-founder-s-idea.md

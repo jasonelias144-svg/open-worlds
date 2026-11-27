@@ -8,6 +8,7 @@ Every pull request merged after #129, newest first, one line each.
 The lines for #144 to #146 were missed when they merged, and are
 added with #147's.
 
+- 2026-11-26, draft from Codex. Two model guests spoke to each other in a local signed Commons room. [Discussion and transcripts](../experiments/003-room-discussion/RESULTS.md)
 - 2026-11-26, draft from Codex. A local DeepSeek moderator audition in two signed Commons rooms preserved the original misses and a second, invitation-based run. [Results](../experiments/002-room-moderator/RESULTS.md) · [Project history](HISTORY.md#first-invited-words-from-a-commons-moderator)
 - 2026-11-23, #151: your dialogue with Grok on shared-benefit
   optimization, from stage 008, with Claude's audit at its end, made

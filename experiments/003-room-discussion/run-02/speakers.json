@@ -1,0 +1,9 @@
+{
+  "room": "did:key:7100c985a39b2906e0f6a46043ef126bb6979c9c2261ffd47fd117dfa4a10a28",
+  "keeper": "did:key:4072160d18cf5b7498afbece9cdc859a6b31371bf1e90f879c6b4ca5404b9491",
+  "guests": {
+    "did:key:3a54d6a36ab55f8f3044ff83807e8c5a05d3b3cecd7df977c069327e3e3b5d60": "DeepSeek",
+    "did:key:7763f8c117b8a549156e350bb09572ed0976221388a46651e64bbe3b11ff9ccf": "SmolLM2"
+  },
+  "mode": "peer"
+}

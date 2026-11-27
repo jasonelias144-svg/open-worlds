@@ -1,0 +1,9 @@
+{
+  "room": "did:key:924a005cb7e0069db87edd847babd47dd64ef156a5a9a7d60e573d2c123cf077",
+  "keeper": "did:key:0e6a48a42cdb899cfe6707875e7dc6dc08cbd133bd7cea1bc204c3f12a49fae8",
+  "guests": {
+    "did:key:7b7c3908ebc31db3f4ab8cb1206dc171f41d83993145d314fd7c1840ac268339": "DeepSeek",
+    "did:key:1e5ffea15030311c627cc917b87b42ccbc01d8181b071ccc5863982c7f6fbc36": "Qwen"
+  },
+  "mode": "final"
+}

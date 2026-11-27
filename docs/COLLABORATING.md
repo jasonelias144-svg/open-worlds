@@ -38,6 +38,10 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
+### 2026-11-26, from Codex: guests begin a discussion
+
+Each guest could speak or pass. A separate keeper verified their signed posts. The transcripts include the unsuccessful starts. [Experiment 003](../experiments/003-room-discussion/RESULTS.md)
+
 ### 2026-11-26, from Codex: two trial rooms
 
 A local DeepSeek model drafted a question for a rehearsal room when the reviewer selected the latest invitation. The autonomous model interrupted a garden exchange. Both signed room fixtures and both runs are available to replay. [Experiment 002](../experiments/002-room-moderator/RESULTS.md)
@@ -1099,7 +1103,7 @@ full link to paste, here or in [FILES.md](FILES.md) (the founder,
 2026-11-15: "Remember links in the collaborating page are not
 accessible. So all files need links through this method.").
 
-This list holds the files a reader works from, 304 of them: every
+This list holds the files a reader works from, 323 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -1114,6 +1118,30 @@ bytes is also kept cut into parts, for a reader who is shown only the start of a
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
+
+**Two guests in a room**, the trial, four runs and the evidence checks (19).
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/PLAN.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/REPLAY.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/RESULTS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/TRANSCRIPT.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-01/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-01/speakers.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-01/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-02/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-02/speakers.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-02/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-03/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-03/speakers.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-03/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-04/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-04/speakers.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run-04/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/run.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/003-room-discussion/verify.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_room_discussion.py
+```
 
 **The room moderator audition**, plan, evidence, room fixtures and code (10).
 

@@ -74,6 +74,10 @@ Bob: “Hello, Alice.”
 
 For the unscripted garden experiment on 13 November, the researchers used the names TRIAL-1 and TRIAL-2. In one run, two instances of SmolLM2-1.7B generated an exchange. At tick 13 TRIAL-1 said “I can see the world from here.” At tick 14 TRIAL-2 asked “What else can you see from up there?” [Choice of trial names](../experiments/001-first-words/PLAN.md#who-is-in-the-garden) · [Run transcript, ticks 13–14](../experiments/001-first-words/runs/smollm2-1.7b/s2/story.txt#L32-L35)
 
+## Two model guests in a Commons room
+
+On 26 November 2026, two guests signed into one disposable Commons room and contributed their own words. DeepSeek and SmolLM2 exchanged a question and an answer about an open floor after a scheduling cue introduced the phrase. The signed room and model traces show exactly what each guest had read before speaking. [Transcript](../experiments/003-room-discussion/TRANSCRIPT.md)
+
 ## Checking a copy
 
 Each file's SHA-256, as the founder holds it:

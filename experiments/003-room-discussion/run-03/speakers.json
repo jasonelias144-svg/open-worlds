@@ -1,0 +1,9 @@
+{
+  "room": "did:key:b746eff472dd2bdf0b9dc2182b41f0b127c249301ae70bd3aab34eb64d45ce04",
+  "keeper": "did:key:07f37a2938c9dc3cabf4dbaead2981338f0986834f06f803738794ad585a5ec8",
+  "guests": {
+    "did:key:b5df52a3c3f1dfbfd90969e3a25f1bb4fc6efd569ad263aed8d779ac4bdfe37a": "DeepSeek",
+    "did:key:b0a742b8c240f488958e3d7c235dda89507b19e192089631585f809398cdd400": "SmolLM2"
+  },
+  "mode": "dialogue"
+}
