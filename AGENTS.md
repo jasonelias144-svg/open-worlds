@@ -213,11 +213,10 @@ effect (docs/ADMIN.md).
 - No secrets or personal data anywhere in the repository (P8). The
   exceptions, as the founder decided (2026-11-13): the founder may be named
   by first name, and the founder's GitHub account name appears in links.
-  And, as the founder decided (2026-11-27), the founder's own account
-  names (GitHub, Kaggle) and email address may appear: "Username is fine.
-  First name is fine. Last name will be fine soon. Going public end
-  anonymity." and "I want my email address to be found." The last name
-  stays out until the founder says so.
+  And, as the founder decided (2026-11-27), all of the founder's own
+  information is public by his choice: his name, both email addresses, his
+  account names and his pronouns, he/him (the handbook's decision 0010).
+  Everyone else's personal data stays out.
   And, as the founder decided (2026-11-17): a conversation record the
   founder brings is kept whole with the others, with whatever the
   founder says in it about their own life and work, unless the founder
