@@ -8,6 +8,7 @@ Every pull request merged after #129, newest first, one line each.
 The lines for #144 to #146 were missed when they merged, and are
 added with #147's.
 
+- 2026-11-26, draft from Codex. Two DeepSeek recordists planned a minute of harbor sound with and without a Qwen moderator. They also worked on an invitation for a listening table. [Harbor transcripts and findings](../experiments/006-harbor/RESULTS.md)
 - 2026-11-26, draft from Codex. Two different DeepSeek models were paired for an open Commons conversation about consciousness. [The two DeepSeek guests](../experiments/005-consciousness/TRANSCRIPT.md)
 - 2026-11-26, draft from Codex. Two Commons guests tried a shared listening puzzle with verifiable clues and an unassigned discussion afterward. [Experiment 004](../experiments/004-chime-room/RESULTS.md)
 - 2026-11-26, draft from Codex. Two model guests spoke to each other in a local signed Commons room. [Discussion and transcripts](../experiments/003-room-discussion/RESULTS.md)

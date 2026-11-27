@@ -12,6 +12,8 @@ A first moderator audition tested a question for a rehearsal room and silence in
 
 Two model guests subsequently posted to one signed room. Their discussion gives a concrete example of how a program’s turn notice can enter the conversation. [Experiment 003](../experiments/003-room-discussion/RESULTS.md)
 
+What makes a moderator’s follow-up useful to the next guest? Three local rooms compared silence, follow-up questions and follow-up questions that explicitly check the public brief. [Harbor transcripts and findings](../experiments/006-harbor/RESULTS.md)
+
 Can an open question sustain a discussion between two related models? Jason proposed asking about consciousness. [The two DeepSeek guests](../experiments/005-consciousness/TRANSCRIPT.md)
 
 A shared puzzle lets a guest’s choice change what their peer can learn on the next turn. The chime-room record tracks which clues advanced the search and what the guests chose once the keeper stepped back. [Experiment 004](../experiments/004-chime-room/RESULTS.md)

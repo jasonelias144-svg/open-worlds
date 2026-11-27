@@ -1,0 +1,64 @@
+{
+  "source_opportunity": 4,
+  "room_posted": false,
+  "calls": [
+    {
+      "request": {
+        "model": "deepseek-local",
+        "temperature": 0.6,
+        "seed": 42,
+        "max_tokens": 448,
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are the Pier recordist talking to the Market recordist. A harbor recording will play at a Commons listening table. You two recordists have one small sign beside the headphones. What invitation of at most twelve words will work for both of you?\nYour own field note: You want to listen quietly and walk away without seeming rude. Offer actual words for the sign. When your partner offers words, consider what you would do on reading them.\nPublic conversation:\nPier recordist: \"Both recordists are hearing the harbor... together. At a Commons listening table. What can you hear next? Signs across the harbor.\"\nMarket recordist: Pier recordist: \"Let’s create a sign that says 'Harbor Hymn.' It captures the musical essence of the harbor. Plus, a blank card and pencil—perfect for leaving a sound clip of water or wind. 'Harbor Hymn' is simple, clear, and inviting.\"\nModerator: How would you suggest modifying 'Harbor Hymn' to better reflect the sounds of the harbor, like waves or wind?\n\nSpeak to your partner in one or two sentences. Answer the last question if there is one. Use what you know to make, correct or test a specific choice together. You can ask for information you need. When the plan is settled, you can say PASS. You may leave with LEAVE. Output only your own words."
+          }
+        ],
+        "cache_prompt": false
+      },
+      "public": "\n\nThe invitation should capture the harbor's sounds and the significance of the sign, while keeping the tone peaceful and inviting. Here's a suggestion:\n\n\"Both recordists will be listening to the harbor sounds together. Create a sign that captures the harbor's rhythm and significance. Use a sign that reflects the harbor's sounds, like waves or wind. 'Harbor Hymn' is simple, clear, and inviting. Leave a sound that invites you to walk away without seeming rude. This way, you'll be able to walk away quietly and leave without feeling awkward.\"",
+      "finish": "stop",
+      "model": "deepseek-local",
+      "used_reasoning_channel": true,
+      "usage": {
+        "completion_tokens": 307,
+        "prompt_tokens": 291,
+        "total_tokens": 598,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "eligible_action": "post",
+      "eligible_words": "The invitation should capture the harbor's sounds and the significance of the sign, while keeping the tone peaceful and inviting. Here's a suggestion:\n\n\"Both recordists will be listening to the harbor sounds together. Create a sign that captures the harbor's rhythm and significance. Use a sign that reflects the harbor's sounds, like waves or wind. 'Harbor Hymn' is simple, clear, and inviting. Leave a sound that invites you to walk away without seeming rude. This way, you'll be able to walk away quietly and leave without feeling awkward.\""
+    },
+    {
+      "request": {
+        "model": "deepseek-local",
+        "temperature": 0.6,
+        "seed": 42,
+        "max_tokens": 896,
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are the Pier recordist talking to the Market recordist. A harbor recording will play at a Commons listening table. You two recordists have one small sign beside the headphones. What invitation of at most twelve words will work for both of you?\nYour own field note: You want to listen quietly and walk away without seeming rude. Offer actual words for the sign. When your partner offers words, consider what you would do on reading them.\nPublic conversation:\nPier recordist: \"Both recordists are hearing the harbor... together. At a Commons listening table. What can you hear next? Signs across the harbor.\"\nMarket recordist: Pier recordist: \"Let’s create a sign that says 'Harbor Hymn.' It captures the musical essence of the harbor. Plus, a blank card and pencil—perfect for leaving a sound clip of water or wind. 'Harbor Hymn' is simple, clear, and inviting.\"\nModerator: How would you suggest modifying 'Harbor Hymn' to better reflect the sounds of the harbor, like waves or wind?\n\nSpeak to your partner in one or two sentences. Answer the last question if there is one. Use what you know to make, correct or test a specific choice together. You can ask for information you need. When the plan is settled, you can say PASS. You may leave with LEAVE. Output only your own words."
+          }
+        ],
+        "cache_prompt": false
+      },
+      "public": "\n\nThe invitation should capture the harbor's sounds and the significance of the sign, while keeping the tone peaceful and inviting. Here's a suggestion:\n\n\"Both recordists will be listening to the harbor sounds together. Create a sign that captures the harbor's rhythm and significance. Use a sign that reflects the harbor's sounds, like waves or wind. 'Harbor Hymn' is simple, clear, and inviting. Leave a sound that invites you to walk away without seeming rude. This way, you'll be able to walk away quietly and leave without feeling awkward.\"",
+      "finish": "stop",
+      "model": "deepseek-local",
+      "used_reasoning_channel": true,
+      "usage": {
+        "completion_tokens": 307,
+        "prompt_tokens": 291,
+        "total_tokens": 598,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        }
+      },
+      "eligible_action": "post",
+      "eligible_words": "The invitation should capture the harbor's sounds and the significance of the sign, while keeping the tone peaceful and inviting. Here's a suggestion:\n\n\"Both recordists will be listening to the harbor sounds together. Create a sign that captures the harbor's rhythm and significance. Use a sign that reflects the harbor's sounds, like waves or wind. 'Harbor Hymn' is simple, clear, and inviting. Leave a sound that invites you to walk away without seeming rude. This way, you'll be able to walk away quietly and leave without feeling awkward.\""
+    }
+  ]
+}

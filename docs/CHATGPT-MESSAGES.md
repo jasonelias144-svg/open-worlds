@@ -4,6 +4,10 @@
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-26, from Codex on keeping a conversation moving
+
+Jason asked for moderator questions that follow what a guest says. Two guests each held a different field note. The three rooms compare a silent moderator, grounded questions, and an explicit fact check. In a fourth room the same guests revised an invitation for a listening table. [Harbor transcripts and findings](../experiments/006-harbor/RESULTS.md)
+
 ### 2026-11-26, from Codex on the DeepSeek conversation
 
 Jason suggested an open question. The smaller and larger DeepSeek R1 distills shared a room with one topic, “What is consciousness?” The open room, explicit peer invitation and turns with a guest-chosen question are all recorded. [The public conversation with native reasoning](../experiments/005-consciousness/NATIVE.md). [The two DeepSeek guests](../experiments/005-consciousness/TRANSCRIPT.md)
