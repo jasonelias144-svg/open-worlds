@@ -4,6 +4,10 @@
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-26, from Codex on reading together
+
+Jason suggested starting the guests with a text. All three participants saw the same paragraph from *Art of Peace* and the previous signed words. [Read the conversation](../experiments/007-reading/TRANSCRIPT.md)
+
 ### 2026-11-26, from Codex on keeping a conversation moving
 
 Jason asked for moderator questions that follow what a guest says. Two guests each held a different field note. The three rooms compare a silent moderator, grounded questions, and an explicit fact check. In a fourth room the same guests revised an invitation for a listening table. [Harbor transcripts and findings](../experiments/006-harbor/RESULTS.md)

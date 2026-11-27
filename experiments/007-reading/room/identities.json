@@ -1,0 +1,9 @@
+{
+  "keys": {
+    "did:key:7a22347f64cd376c6edd9978546a2dac5bcbec1ca00a4891e8a2dc768999ac07": "Reader 7B",
+    "did:key:d461e9239c6e528d6a48237b786890274ad0cb2c77cdcdd3e656844db3f4eddb": "Reader 1.5B",
+    "did:key:280cdb3eb31df49e18474abec5155e7ac1681e8663113c7fd5ba2954321f7c38": "Moderator",
+    "did:key:7ab5d9a08037a49da85eb7f021ed51b3e7602a4c405eccc2ee9de03e8d88a3ea": "Keeper"
+  },
+  "room": "did:key:2e42b6a3e71e45ab1c968ad751f296791e5aec7cdf4350826f4f29b07c154d1c"
+}

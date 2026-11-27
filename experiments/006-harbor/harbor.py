@@ -3,6 +3,7 @@
 import argparse
 from contextlib import ExitStack
 from difflib import SequenceMatcher
+from functools import partial
 import hashlib
 import json
 from pathlib import Path
@@ -174,13 +175,22 @@ def infer(body, name, recover_final=False):
 
 
 def play(folder, plugin, moderated, check_facts=False, sign=False):
+    settings = {"moderated": moderated, "check_facts": check_facts, "sign": sign}
+    run_room(folder, plugin, CAST, SIGN if sign else BRIEF, "harbor-sign" if sign else "harbor-recording",
+             settings, partial(schedule, moderated, sign=sign),
+             partial(turn, check_facts=check_facts, sign=sign),
+             lambda body, name: infer(body, name, recover_final=sign and name != MOD))
+
+
+def run_room(folder, plugin, cast, topic, template_id, settings, make_schedule, take_turn, complete):
+    """Record model turns against each participant's verified view of the room."""
     folder.mkdir(exist_ok=False)
     with ExitStack() as stack:
-        keeper, guests, names, room, log = create_room(stack, plugin, CAST, SIGN if sign else BRIEF, "harbor-sign" if sign else "harbor-recording")
-        save(folder / "identities.json", {"keys": names, "room": room, "moderated": moderated, "check_facts": check_facts, "sign": sign})
+        keeper, guests, names, room, log = create_room(stack, plugin, cast, topic, template_id)
+        save(folder / "identities.json", {**settings, "keys": names, "room": room})
         save(folder / "room.json", log)
         history = []
-        offers = schedule(moderated, history, sign)
+        offers = make_schedule(history)
         offer = next(offers)
         with (folder / "turns.jsonl").open("x") as trace:
             while offer:
@@ -193,12 +203,12 @@ def play(folder, plugin, moderated, check_facts=False, sign=False):
                 entry = {"speaker": name, "target": target, "calls": []}
 
                 def get(body):
-                    call = infer(body, name, recover_final=sign and name != MOD)
+                    call = complete(body, name)
                     entry["calls"].append(call)
                     return call
 
                 try:
-                    action, words = turn(name, target, seen, get, check_facts, sign)
+                    action, words = take_turn(name, target, seen, get)
                     entry["action"] = action
                     if words is not None:
                         op = guest.call("post_as_participant", room_id=room, text=words, kind="normal")
@@ -223,6 +233,14 @@ def play(folder, plugin, moderated, check_facts=False, sign=False):
 
 def verify(folder, plugin=None):
     ids = json.loads((folder / "identities.json").read_text())
+    sign = ids.get("sign", False)
+    return verify_room(folder, plugin, ids, CAST, SIGN if sign else BRIEF,
+                       partial(schedule, ids["moderated"], sign=sign),
+                       partial(turn, check_facts=ids.get("check_facts", False), sign=sign))
+
+
+def verify_room(folder, plugin, ids, cast, topic, make_schedule, take_turn):
+    """Replay the protocol from the signed messages, including unposted opportunities."""
     log = json.loads((folder / "room.json").read_text())
     entries = [json.loads(s) for s in (folder / "turns.jsonl").read_text().splitlines()]
     if plugin:
@@ -232,14 +250,14 @@ def verify(folder, plugin=None):
             if verified_snapshot(reader, ids["room"]) != log:
                 raise ValueError("Signatures or exported log differ.")
     keys, recs = ids["keys"], log["records"]
-    if (set(keys.values()) != {"Keeper", *CAST} or len(keys) != 4 or log["world_id"] != ids["room"]
+    if (set(keys.values()) != {"Keeper", *cast} or len(keys) != len(cast) + 1 or log["world_id"] != ids["room"]
             or recs[0]["type"] != "room_created" or keys[recs[0]["creator_id"]] != "Keeper"
-            or recs[0]["template"]["topic"] != (SIGN if ids.get("sign") else BRIEF)
-            or [keys[r["subject_id"]] for r in recs[1:4]] != list(CAST)
-            or any(r["type"] != "join" or not r["is_ai"] or r["tier"] != "communicate" for r in recs[1:4])):
+            or recs[0]["template"]["topic"] != topic
+            or [keys[r["subject_id"]] for r in recs[1:1 + len(cast)]] != list(cast)
+            or any(r["type"] != "join" or not r["is_ai"] or r["tier"] != "communicate" for r in recs[1:1 + len(cast)])):
         raise ValueError("Unexpected cast, admissions or topic.")
     history = []
-    offers = schedule(ids["moderated"], history, ids.get("sign", False))
+    offers = make_schedule(history)
     offer = next(offers)
     for e in entries:
         if offer != (e["speaker"], e["target"]):
@@ -252,11 +270,11 @@ def verify(folder, plugin=None):
                 raise ValueError("Prompt differs from guest observation.")
             return call
 
-        action, words = turn(*offer, history, recorded, ids.get("check_facts", False), ids.get("sign", False))
+        action, words = take_turn(*offer, history, recorded)
         if next(calls, None) or action != e["action"]:
             raise ValueError("Unexplained inference or action.")
         if action == "post":
-            seq = len(history) + 4
+            seq = len(history) + 1 + len(cast)
             r = recs[seq]
             if (e["seq"] != seq or r["seq"] != seq or r["type"] != "message"
                     or r["text"] != words or keys[r["author_id"]] != offer[0]):
@@ -268,7 +286,7 @@ def verify(folder, plugin=None):
             offer = offers.send(action)
         except StopIteration:
             offer = None
-    if offer is not None or len(recs) != len(history) + 4:
+    if offer is not None or len(recs) != len(history) + 1 + len(cast):
         raise ValueError("Incomplete or extra evidence.")
     return history
 

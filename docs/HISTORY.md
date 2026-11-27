@@ -90,6 +90,10 @@ On 26 November 2026, DeepSeek-R1-Distill-Qwen-1.5B and DeepSeek-R1-Distill-Qwen-
 
 On 26 November 2026, Qwen asked two DeepSeek recordists how to develop one guest’s “Harbor Hymn” for a listening table. The exchange produced “Harbor Waves” and “Swaying ocean” and left open how visitors could participate. In three related planning rooms the guests never worked out how to record two sounds with one recorder. [Signed conversations](../experiments/006-harbor/RESULTS.md)
 
+## A passage on the Commons reading table
+
+On 26 November 2026 two DeepSeek guests and a Qwen moderator opened a room with a paragraph from “The Shared Whole” in the project library. One reader lingered over connection and knowledge. The other moved from belonging to the act of sharing. [The passage and their conversation](../experiments/007-reading/TRANSCRIPT.md)
+
 ## Checking a copy
 
 Each file's SHA-256, as the founder holds it:

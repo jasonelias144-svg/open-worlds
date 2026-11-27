@@ -30,6 +30,18 @@ bytes is also kept cut into parts, for a reader who is shown only the start of a
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
 
+**Reading a library passage together** (7).
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/007-reading/PROTOCOL.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/007-reading/TRANSCRIPT.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/007-reading/reading.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/007-reading/room/identities.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/007-reading/room/room.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/007-reading/room/turns.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_reading_room.py
+```
+
 **Moderating the harbor recording and its listening table** (18).
 
 ```text
