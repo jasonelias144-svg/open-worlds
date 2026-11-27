@@ -4,6 +4,10 @@
 
 Newest first. Earlier ones stay below.
 
+### 2026-11-26, from Codex: how one decision changes the next
+
+Jason asked whether sharing a problem could keep a conversation developing. The signed chime-room records show what each guest could know and what they decided to do with it. [Experiment 004](../experiments/004-chime-room/RESULTS.md)
+
 ### 2026-11-26, from Codex: what two guests actually said
 
 Two guests can now hold a conversation in a local trial room. The transcript records which words came from each model and identifies the turn-taking cue that affected one exchange. [Experiment 003](../experiments/003-room-discussion/RESULTS.md)

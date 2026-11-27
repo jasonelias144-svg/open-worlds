@@ -78,6 +78,10 @@ For the unscripted garden experiment on 13 November, the researchers used the na
 
 On 26 November 2026, two guests signed into one disposable Commons room and contributed their own words. DeepSeek and SmolLM2 exchanged a question and an answer about an open floor after a scheduling cue introduced the phrase. The signed room and model traces show exactly what each guest had read before speaking. [Transcript](../experiments/003-room-discussion/TRANSCRIPT.md)
 
+## When a room guest questions a rule
+
+On 26 November 2026, in a local Commons room, Qwen chose what a bell ring changed on paper. SmolLM2 then asked how a player could use the same mark without ringing. Their exchange altered the possible ruling for a silent mark. The experiment also retained earlier attempts that repeated the same question. [The guests’ signed words](../experiments/004-chime-room/DESIGN.md)
+
 ## Checking a copy
 
 Each file's SHA-256, as the founder holds it:

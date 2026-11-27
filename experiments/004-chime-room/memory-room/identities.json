@@ -1,0 +1,9 @@
+{
+  "room": "did:key:42aa737e9f280598c331fd5eedbe98435b68f20b70d40989e657a0aade354d77",
+  "keys": {
+    "did:key:11e0db7f4e38526533eb70babac1e4ac36954dc398287f88d8addd9ff5a78f13": "Qwen",
+    "did:key:8ea2856991d8f1201de5e123e32e4f223d97eec376215a55ee64ce2df33cb378": "SmolLM2",
+    "did:key:04192439cb57efd73c20a8371384d713a0a9f32917074bb564c58a11c7ac6a76": "Keeper"
+  },
+  "remember": true
+}

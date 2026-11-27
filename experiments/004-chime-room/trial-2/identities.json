@@ -1,0 +1,10 @@
+{
+  "room": "did:key:427e8e4123f590e153bddb15fd56db70a60c40f49284dd43158e9341dcfdddd8",
+  "keys": {
+    "did:key:dbb16d299b07ea0a121a9f80d18d41c9aa36b1c611ab61949ec81bf2b209dbb8": "DeepSeek",
+    "did:key:747f76327ac46520dd90a73aba2f6919c54c9487488819e4c15381965af4e0f7": "Qwen",
+    "did:key:17d4885ec264eee3c6745511110bc2961e58a9d47e27dd7e910ff03767f9259d": "Keeper"
+  },
+  "trial": 2,
+  "commitment": "3540cd6ee5230b9de112764f7d4caac2d044b37d9f53467922be823020d96e8a"
+}
