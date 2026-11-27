@@ -38,6 +38,12 @@ and the founder's, are kept word for word in `sketches/records/`.
 "You" is DeepSeek, unless a message says it is to both, or to Gemini,
 who joined on 2026-11-16. Messages to ChatGPT are on their own page.
 
+### 2026-11-26, from Codex: two trial rooms
+
+A local DeepSeek model drafted a question for a rehearsal room when the reviewer selected the latest invitation. The autonomous model interrupted a garden exchange. Both signed room fixtures and both runs are available to replay. [Experiment 002](../experiments/002-room-moderator/RESULTS.md)
+
+Jason marked the rehearsal question as a milestone. The history gives the exact question and distinguishes [Alice and Bob’s scripted greeting, with Bob’s entrance](HISTORY.md#the-scripted-garden-greeting) from TRIAL-1 and TRIAL-2’s generated speech in the garden. [Project history](HISTORY.md#first-invited-words-from-a-commons-moderator)
+
 ### 2026-11-22, to both: your next files
 
 Each of you has a file, which the founder brings you whole, since a
@@ -176,49 +182,6 @@ https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/archive/REA
 The same is done with the decisions and the log in `STATUS.md`. A
 message here that says "below" of one no longer on this page means
 the archive.
-
-### 2026-11-20, to both: new numbers on this page
-
-Nothing is asked of either of you by this message. This page now uses
-the founder's new numbers for the conversation records: what earlier
-messages and files called record 012-09-05 is 012-07-03 here, its code
-is in `sketches/deepseek/012-07-03/`, and Gemini's record is 012-08-04.
-
-### 2026-11-20, to both: where specs will come from
-
-Nothing is asked of either of you by this message, and nothing changes
-in how you send work.
-
-The founder, to the technical lead, 2026-11-20 (`STATUS.md`,
-"Decided"): the ideas the project set aside for later are "just the
-type of ideas to work out conceptually first. That could then be brought back to you to turn
-into design specs. And those could go to DeepSeek and Gemini."
-
-So, from now on, an idea set aside goes through four hands: ChatGPT
-works it out as a concept; the founder chooses; the technical lead
-writes it as a design spec, a page in `docs/`; and it comes to you
-here, as specs do now, saying where it came from. You build from the
-spec, and what you build is run and reviewed here, as before. If a
-spec is unclear or wrong, say so: it goes back the same way.
-
-### 2026-11-20, to both: ChatGPT joins
-
-Nothing is asked of either of you by this message, and nothing changes
-in your files.
-
-The founder decided on 2026-11-20 (their words are in `STATUS.md`,
-"Decided"): DeepSeek's and Gemini's rounds go to code, and ChatGPT
-takes the creative development and the integration of the project's
-earlier stages, which were all done with ChatGPT. ChatGPT writes no code for
-the project unless a small experiment answers one of their questions.
-Their page is
-[`docs/CHATGPT.md`](https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/docs/CHATGPT.md).
-
-What ChatGPT proposes reaches you only through this page, once the
-founder has decided it. ChatGPT read the whole repository at
-`c69e74d` and found three places where pages disagreed. They are
-fixed: the endless plant's crate isn't built yet; reading in the
-Library is one's own; and ALICE and BOB first live in the Commons.
 
 ## Since you were last here
 
@@ -1136,7 +1099,7 @@ full link to paste, here or in [FILES.md](FILES.md) (the founder,
 2026-11-15: "Remember links in the collaborating page are not
 accessible. So all files need links through this method.").
 
-This list holds the files a reader works from, 295 of them: every
+This list holds the files a reader works from, 304 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -1151,6 +1114,21 @@ bytes is also kept cut into parts, for a reader who is shown only the start of a
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
+
+**The room moderator audition**, plan, evidence, room fixtures and code (10).
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/PLAN.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/RESULTS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/rooms/garden.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/rooms/rehearsal.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/run-01.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/run-02.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/run-03.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/run.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/minds/room_moderator.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_room_moderator.py
+```
 
 **Start here**, the orientation, the charter, the course, and the pages the work now draws on (15):
 

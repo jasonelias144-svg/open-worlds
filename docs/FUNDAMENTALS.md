@@ -146,6 +146,8 @@ one of them updates this page.
 
 ## Privacy
 
+A moderator audition in two synthetic Commons rooms tested what reaches the model. The adapter passes only one room’s visible speech and topic, using room-local speaker numbers. The signed fixture retains a public test marker withdrawn from the visible view, so the boundary can be checked. [Experiment 002](../experiments/002-room-moderator/RESULTS.md)
+
 1. **A private space for everyone, encrypted, even from ADMIN.** The
    founder (2026-11-13): "Everyone should be entitled to a private space
    for thoughts and reasoning and anything else that is completely

@@ -17,12 +17,11 @@ The file itself is the one to change. `python3 docs/parts.py`
 makes the parts again, and `tests/test_parts.py` fails when they
 are out of step with their files.
 
-## `STATUS.md`, in 3 parts
+## `STATUS.md`, in 2 parts
 
 ```text
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/start.md
 https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/decided.md
-https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/parts/STATUS.md/log.md
 ```
 
 ## `archive/COLLABORATING/2026-11-16.md`, in 3 parts

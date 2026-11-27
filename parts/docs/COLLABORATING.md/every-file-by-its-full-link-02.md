@@ -14,7 +14,7 @@ full link to paste, here or in [FILES.md](FILES.md) (the founder,
 2026-11-15: "Remember links in the collaborating page are not
 accessible. So all files need links through this method.").
 
-This list holds the files a reader works from, 295 of them: every
+This list holds the files a reader works from, 304 of them: every
 page, all the code in Python and Rust, the tests, the vectors and the
 web pages. [FILES.md](FILES.md) holds the rest, and says how many:
 files of record best sent when a question needs them: the
@@ -29,6 +29,21 @@ bytes is also kept cut into parts, for a reader who is shown only the start of a
 [parts/INDEX.md](../parts/INDEX.md) gives every part's full link, and
 its own link is in the last group below. The test vectors and
 Cargo.lock are left whole.
+
+**The room moderator audition**, plan, evidence, room fixtures and code (10).
+
+```text
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/PLAN.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/RESULTS.md
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/rooms/garden.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/rooms/rehearsal.json
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/run-01.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/run-02.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/run-03.jsonl
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/experiments/002-room-moderator/run.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/minds/room_moderator.py
+https://raw.githubusercontent.com/jasonelias144-svg/open-worlds/main/tests/test_room_moderator.py
+```
 
 **Start here**, the orientation, the charter, the course, and the pages the work now draws on (15):
 

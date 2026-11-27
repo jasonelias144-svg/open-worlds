@@ -88,6 +88,24 @@
    "sha256": "c86f3f09c849f0266dbca555493874dd9d5a00ae2dc4964827b58cda7ff89131"
   },
   {
+   "path": "archive/COLLABORATING/2026-11-20.md",
+   "kind": "archive",
+   "title": "docs/COLLABORATING.md, 2026-11-20",
+   "source": "docs/COLLABORATING.md",
+   "date": "2026-11-20",
+   "sections": [
+    {
+     "name": "Messages from the technical lead",
+     "entries": 3
+    }
+   ],
+   "moved": "2026-11-26",
+   "commit": "c1692786911cf4670fc69d29de7669fa81783ea0",
+   "bytes": 2432,
+   "lines": 51,
+   "sha256": "1bf5e01a5d9c42dc770e620eb594a79bde6a7c877fc417c1a44df6a504d14eb2"
+  },
+  {
    "path": "archive/STATUS/2026-11-12.md",
    "kind": "archive",
    "title": "STATUS.md, 2026-11-12",
@@ -286,6 +304,32 @@
    "bytes": 20561,
    "lines": 344,
    "sha256": "4df3f9bd205d088efef13a3bfce7134e33c0bc5b5ad6bd66f73a15275a0c633b"
+  },
+  {
+   "path": "archive/STATUS/2026-11-21.md",
+   "kind": "archive",
+   "title": "STATUS.md, 2026-11-21",
+   "source": "STATUS.md",
+   "date": "2026-11-21",
+   "sections": [
+    {
+     "name": "Decided",
+     "entries": 13
+    },
+    {
+     "name": "Decided by the technical lead",
+     "entries": 1
+    },
+    {
+     "name": "Log",
+     "entries": 9
+    }
+   ],
+   "moved": "2026-11-26",
+   "commit": "c1692786911cf4670fc69d29de7669fa81783ea0",
+   "bytes": 16772,
+   "lines": 287,
+   "sha256": "87ea9d3179b49eee1943057ea87b27239938a25e23725693b4f9e3fc94a21204"
   }
  ]
 }

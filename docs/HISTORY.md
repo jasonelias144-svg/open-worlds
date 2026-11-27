@@ -52,6 +52,28 @@ Two parts of the stages are public, in [`library/`](https://raw.githubuserconten
 shared-benefit optimization with Claude's audit, at the founder's word
 (2026-11-23).
 
+## First invited words from a Commons moderator
+
+On 26 November 2026, the reviewer selected turn 6 of a signed Commons rehearsal-room replay. The musicians in the synthetic exchange had asked for a question to help them try a quiet cue. DeepSeek-R1-Distill-Qwen-1.5B, running locally, gave this answer.
+
+> How can you set up a quiet cue for musicians to choose their next solo without raising a hand?
+
+The reply went to the reviewer as a preview. The room’s signed log ends with the musicians’ invitation. [Signed room](../experiments/002-room-moderator/rooms/rehearsal.json) · [Model input and reply, run 02](../experiments/002-room-moderator/run-02.jsonl#L1)
+
+Jason marked the occasion. “Brilliant! Record that as the first words from a model within Open Worlds.” The rehearsal marks the first invited moderator reply in the Commons audition. [Moderator audition](../experiments/002-room-moderator/RESULTS.md)
+
+### The scripted garden greeting
+
+Jason gave the scripted garden greeting in three lines on 26 November 2026. The original experiment plan identifies it as the garden’s “Hello World.” [Garden experiment plan](../experiments/001-first-words/PLAN.md#the-question)
+
+```text
+Alice: “Hello, world.”
+<Enter Bob>
+Bob: “Hello, Alice.”
+```
+
+For the unscripted garden experiment on 13 November, the researchers used the names TRIAL-1 and TRIAL-2. In one run, two instances of SmolLM2-1.7B generated an exchange. At tick 13 TRIAL-1 said “I can see the world from here.” At tick 14 TRIAL-2 asked “What else can you see from up there?” [Choice of trial names](../experiments/001-first-words/PLAN.md#who-is-in-the-garden) · [Run transcript, ticks 13–14](../experiments/001-first-words/runs/smollm2-1.7b/s2/story.txt#L32-L35)
+
 ## Checking a copy
 
 Each file's SHA-256, as the founder holds it:
