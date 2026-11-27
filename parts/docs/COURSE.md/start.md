@@ -8,6 +8,8 @@
 
 # The course
 
+For the experimental course, choose a starting condition and follow the outcome in [Ways to set a world in motion](../experiments/SCENARIO-COURSE.md).
+
 The founder: "Let’s plot a course forward and then after each completed
 step, plot a new one that adds one new step forward."
 

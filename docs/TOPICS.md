@@ -16,6 +16,8 @@ comes back is run and reviewed here like any change
 ([COLLABORATING.md](COLLABORATING.md), "Sending a proposal"). This page is
 kept current with the course, as COLLABORATING.md is (AGENTS.md).
 
+The [scenario course](../experiments/SCENARIO-COURSE.md) pairs these ideas with starting conditions, comparisons and observable outcomes. Its ledger links to trials as they run.
+
 ## For every topic
 
 - **Say which topic, and which course step,** by the course's numbers.

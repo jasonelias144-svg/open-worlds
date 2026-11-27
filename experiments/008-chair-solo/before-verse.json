@@ -1,0 +1,467 @@
+{
+  "format": "verse",
+  "timing": "before",
+  "opening": "At rehearsal, a chair scraped the floor before the next solo.",
+  "manifest": {
+    "entity_id": "rehearsal-before",
+    "name": "Rehearsal",
+    "protocol_version": "WCP/0.4",
+    "law_url": "poetry://rehearsal-before/law",
+    "act_endpoint": "poetry://rehearsal-before/act",
+    "log_endpoint": "poetry://rehearsal-before/log",
+    "sub_registry_endpoint": null,
+    "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+    "signature": "79405708413d6f567b94dfadf5b00859600bfc1b294bead66ed38bf8ce299ebe0b7499c873a060ef6fe997b1ac28db41fa083798beb9a39695ba18247d69f800"
+  },
+  "attempts": [
+    {
+      "poet": "Poet 7B",
+      "request": {
+        "model": "deepseek-seven",
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are Poet 7B. At rehearsal two poets are writing a poem together, one short stanza at a time. Read what is on the page. If you want to write, add a few lines of your own that pick up something you hear. Your partner will see exactly the words you put on the page. Give only the verse you want to share. You may also send the single word PASS or LEAVE.\n\nOpening line:\nAt rehearsal, a chair scraped the floor before the next solo.\n\nAccepted turns in order:\n(none yet)"
+          }
+        ],
+        "temperature": 0.6,
+        "seed": 42,
+        "max_tokens": 640,
+        "cache_prompt": false
+      },
+      "call": {
+        "public": "\n\nThe assistant's line \"A shadow crept across the stage\" continues the story of a shadow play, with the chair scraping adding to the tension. My line \"The shadow paused, revealing a hidden figure\" suggests that there's more to the scene than meets the eye, hinting at underlying dynamics or secrets. This keeps the momentum going and adds depth to the poem.",
+        "finish": "stop",
+        "model": "deepseek-seven",
+        "used_reasoning_channel": true,
+        "usage": {
+          "completion_tokens": 271,
+          "prompt_tokens": 114,
+          "total_tokens": 385,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      },
+      "signed_act": {
+        "actor_token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+        "type": "poem.turn",
+        "payload": {
+          "acknowledgment": "",
+          "proposal": "The assistant's line \"A shadow crept across the stage\" continues the story of a shadow play, with the chair scraping adding to the tension. My line \"The shadow paused, revealing a hidden figure\" suggests that there's more to the scene than meets the eye, hinting at underlying dynamics or secrets. This keeps the momentum going and adds depth to the poem.",
+          "invitation": "",
+          "holds_open": false
+        },
+        "seq": 1795728193484258,
+        "signature": "3dfa6019b191b38e0ec263e56099cfae12de57f0b91a9a0207eb0d7d1ca59add2f446b1ccf09a31448018df84b8c4e2ec1a5dc18594d8f25a195efcdc4a0a40c",
+        "attachment": null
+      },
+      "outcome": "accepted"
+    },
+    {
+      "poet": "Poet 1.5B",
+      "request": {
+        "model": "deepseek-local",
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are Poet 1.5B. At rehearsal two poets are writing a poem together, one short stanza at a time. Read what is on the page. If you want to write, add a few lines of your own that pick up something you hear. Your partner will see exactly the words you put on the page. Give only the verse you want to share. You may also send the single word PASS or LEAVE.\n\nOpening line:\nAt rehearsal, a chair scraped the floor before the next solo.\n\nAccepted turns in order:\nPoet 7B\nThe assistant's line \"A shadow crept across the stage\" continues the story of a shadow play, with the chair scraping adding to the tension. My line \"The shadow paused, revealing a hidden figure\" suggests that there's more to the scene than meets the eye, hinting at underlying dynamics or secrets. This keeps the momentum going and adds depth to the poem."
+          }
+        ],
+        "temperature": 0.6,
+        "seed": 42,
+        "max_tokens": 640,
+        "cache_prompt": false
+      },
+      "call": {
+        "public": "The assistant's line, \"A shadow crept across the stage,\" continues the tension and adds depth to the poem.",
+        "finish": "stop",
+        "model": "deepseek-local",
+        "used_reasoning_channel": true,
+        "usage": {
+          "completion_tokens": 269,
+          "prompt_tokens": 195,
+          "total_tokens": 464,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "public_omitted": {
+          "reason": "thinking delimiter in public channel",
+          "sha256": "096174b2bba4ffa343c04e99dad4a98816818df1436106f402851afdb5c20887",
+          "bytes": 341
+        }
+      },
+      "signed_act": {
+        "actor_token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+        "type": "poem.turn",
+        "payload": {
+          "acknowledgment": "",
+          "proposal": "The assistant's line, \"A shadow crept across the stage,\" continues the tension and adds depth to the poem.",
+          "invitation": "",
+          "holds_open": false
+        },
+        "seq": 1795728203050097,
+        "signature": "5300e357fd2dd08eddfa1cdc6b2b6f3612408f2e14fb21fb318d2d15e9378291298d99c9bdba801bb969538a9bfb637ab826f4cc59bfde17c8e4f32605e18709",
+        "attachment": null
+      },
+      "outcome": "accepted"
+    },
+    {
+      "poet": "Poet 7B",
+      "request": {
+        "model": "deepseek-seven",
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are Poet 7B. At rehearsal two poets are writing a poem together, one short stanza at a time. Read what is on the page. If you want to write, add a few lines of your own that pick up something you hear. Your partner will see exactly the words you put on the page. Give only the verse you want to share. You may also send the single word PASS or LEAVE.\n\nOpening line:\nAt rehearsal, a chair scraped the floor before the next solo.\n\nAccepted turns in order:\nPoet 7B\nThe assistant's line \"A shadow crept across the stage\" continues the story of a shadow play, with the chair scraping adding to the tension. My line \"The shadow paused, revealing a hidden figure\" suggests that there's more to the scene than meets the eye, hinting at underlying dynamics or secrets. This keeps the momentum going and adds depth to the poem.\n\nPoet 1.5B\nThe assistant's line, \"A shadow crept across the stage,\" continues the tension and adds depth to the poem."
+          }
+        ],
+        "temperature": 0.6,
+        "seed": 42,
+        "max_tokens": 640,
+        "cache_prompt": false
+      },
+      "call": {
+        "public": "\n\nIt seems like you're participating in a collaborative poetic writing exercise. If you'd like to continue the poem, you can add your own line that builds on the existing tension and depth. If you're done or need to step back, you can say \"PASS\" to continue or \"LEAVE\" to stop. Let me know how you'd like to proceed!",
+        "finish": "stop",
+        "model": "deepseek-seven",
+        "used_reasoning_channel": true,
+        "usage": {
+          "completion_tokens": 269,
+          "prompt_tokens": 223,
+          "total_tokens": 492,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      },
+      "signed_act": {
+        "actor_token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+        "type": "poem.turn",
+        "payload": {
+          "acknowledgment": "",
+          "proposal": "It seems like you're participating in a collaborative poetic writing exercise. If you'd like to continue the poem, you can add your own line that builds on the existing tension and depth. If you're done or need to step back, you can say \"PASS\" to continue or \"LEAVE\" to stop. Let me know how you'd like to proceed!",
+          "invitation": "",
+          "holds_open": false
+        },
+        "seq": 1795728244455454,
+        "signature": "20c72c8d546969f7ea134368687d7797f176de4df3b696f895c00156d81ca0bffa9e28cb42100c8bf197f6086fe3d42e9aac0160d1e90028ac73551f257ba80e",
+        "attachment": null
+      },
+      "outcome": "accepted"
+    },
+    {
+      "poet": "Poet 1.5B",
+      "request": {
+        "model": "deepseek-local",
+        "messages": [
+          {
+            "role": "user",
+            "content": "You are Poet 1.5B. At rehearsal two poets are writing a poem together, one short stanza at a time. Read what is on the page. If you want to write, add a few lines of your own that pick up something you hear. Your partner will see exactly the words you put on the page. Give only the verse you want to share. You may also send the single word PASS or LEAVE.\n\nOpening line:\nAt rehearsal, a chair scraped the floor before the next solo.\n\nAccepted turns in order:\nPoet 7B\nThe assistant's line \"A shadow crept across the stage\" continues the story of a shadow play, with the chair scraping adding to the tension. My line \"The shadow paused, revealing a hidden figure\" suggests that there's more to the scene than meets the eye, hinting at underlying dynamics or secrets. This keeps the momentum going and adds depth to the poem.\n\nPoet 1.5B\nThe assistant's line, \"A shadow crept across the stage,\" continues the tension and adds depth to the poem.\n\nPoet 7B\nIt seems like you're participating in a collaborative poetic writing exercise. If you'd like to continue the poem, you can add your own line that builds on the existing tension and depth. If you're done or need to step back, you can say \"PASS\" to continue or \"LEAVE\" to stop. Let me know how you'd like to proceed!"
+          }
+        ],
+        "temperature": 0.6,
+        "seed": 42,
+        "max_tokens": 640,
+        "cache_prompt": false
+      },
+      "call": {
+        "public": "\n\nYou're welcome! It sounds like you're having a great time exploring your own poetic ideas. I'd love to continue the poem if you'd like, adding lines that build on the tension and depth I've noticed. Alternatively, feel free to step back by saying \"LEAVE\" to take a break. Let me know how you'd like to proceed!",
+        "finish": "stop",
+        "model": "deepseek-local",
+        "used_reasoning_channel": true,
+        "usage": {
+          "completion_tokens": 266,
+          "prompt_tokens": 306,
+          "total_tokens": 572,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        }
+      },
+      "signed_act": {
+        "actor_token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+        "type": "poem.turn",
+        "payload": {
+          "acknowledgment": "",
+          "proposal": "You're welcome! It sounds like you're having a great time exploring your own poetic ideas. I'd love to continue the poem if you'd like, adding lines that build on the tension and depth I've noticed. Alternatively, feel free to step back by saying \"LEAVE\" to take a break. Let me know how you'd like to proceed!",
+          "invitation": "",
+          "holds_open": false
+        },
+        "seq": 1795728254932989,
+        "signature": "9fa933a9ef5e671d361ebccfdf40df32f4aeccb44a362d9f347e900a76064829ecddec7ca42cefeecd61eb7f69de5e057161b7ff9d1efe0144a698b77636ee0c",
+        "attachment": null
+      },
+      "outcome": "accepted"
+    }
+  ],
+  "stop": "the last 3 turns pose the same invitation",
+  "log": [
+    {
+      "timestamp": "2026-11-26T21:22:34.627277+00:00",
+      "kind": "admission",
+      "actor_token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+      "target": null,
+      "data": {
+        "name": "Poet 7B",
+        "stamp": "077e0fbc2a4d1e4f17f42eddfdedac27bb7e8b29a9c56408ea3334037a1013bf"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:22:34.629617+00:00",
+      "kind": "admission",
+      "actor_token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+      "target": null,
+      "data": {
+        "name": "Poet 1.5B",
+        "stamp": "2bc10244681e99f337a6b004c7f6bd10ff216740381656ba5db56f30dcf841da"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:23:13.484484+00:00",
+      "kind": "turn",
+      "actor_token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+      "target": null,
+      "data": {
+        "turn_index": 0,
+        "round": 0,
+        "actor_token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+        "actor_name": "Poet 7B",
+        "acknowledgment": "",
+        "proposal": "The assistant's line \"A shadow crept across the stage\" continues the story of a shadow play, with the chair scraping adding to the tension. My line \"The shadow paused, revealing a hidden figure\" suggests that there's more to the scene than meets the eye, hinting at underlying dynamics or secrets. This keeps the momentum going and adds depth to the poem.",
+        "invitation": "",
+        "holds_open": false,
+        "stance_used": null,
+        "timestamp": "2026-11-26T21:23:13.484484+00:00"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:23:23.050406+00:00",
+      "kind": "turn",
+      "actor_token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+      "target": null,
+      "data": {
+        "turn_index": 1,
+        "round": 1,
+        "actor_token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+        "actor_name": "Poet 1.5B",
+        "acknowledgment": "",
+        "proposal": "The assistant's line, \"A shadow crept across the stage,\" continues the tension and adds depth to the poem.",
+        "invitation": "",
+        "holds_open": false,
+        "stance_used": null,
+        "timestamp": "2026-11-26T21:23:23.050406+00:00"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:24:04.455675+00:00",
+      "kind": "turn",
+      "actor_token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+      "target": null,
+      "data": {
+        "turn_index": 2,
+        "round": 2,
+        "actor_token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+        "actor_name": "Poet 7B",
+        "acknowledgment": "",
+        "proposal": "It seems like you're participating in a collaborative poetic writing exercise. If you'd like to continue the poem, you can add your own line that builds on the existing tension and depth. If you're done or need to step back, you can say \"PASS\" to continue or \"LEAVE\" to stop. Let me know how you'd like to proceed!",
+        "invitation": "",
+        "holds_open": false,
+        "stance_used": null,
+        "timestamp": "2026-11-26T21:24:04.455675+00:00"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:24:14.933188+00:00",
+      "kind": "turn",
+      "actor_token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+      "target": null,
+      "data": {
+        "turn_index": 3,
+        "round": 3,
+        "actor_token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+        "actor_name": "Poet 1.5B",
+        "acknowledgment": "",
+        "proposal": "You're welcome! It sounds like you're having a great time exploring your own poetic ideas. I'd love to continue the poem if you'd like, adding lines that build on the tension and depth I've noticed. Alternatively, feel free to step back by saying \"LEAVE\" to take a break. Let me know how you'd like to proceed!",
+        "invitation": "",
+        "holds_open": false,
+        "stance_used": null,
+        "timestamp": "2026-11-26T21:24:14.933188+00:00"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:24:14.933188+00:00",
+      "kind": "convergence",
+      "actor_token": null,
+      "target": null,
+      "data": {
+        "turn_count": 4,
+        "window": 3,
+        "reason": "the last 3 turns pose the same invitation"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:24:14.939942+00:00",
+      "kind": "departure",
+      "actor_token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+      "target": null,
+      "data": {
+        "name": "Poet 7B",
+        "arrival": "077e0fbc2a4d1e4f17f42eddfdedac27bb7e8b29a9c56408ea3334037a1013bf"
+      }
+    },
+    {
+      "timestamp": "2026-11-26T21:24:14.942282+00:00",
+      "kind": "departure",
+      "actor_token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+      "target": null,
+      "data": {
+        "name": "Poet 1.5B",
+        "arrival": "2bc10244681e99f337a6b004c7f6bd10ff216740381656ba5db56f30dcf841da"
+      }
+    }
+  ],
+  "passports": [
+    {
+      "identity": {
+        "token": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+        "name": "Poet 7B"
+      },
+      "entries": [
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "arrival",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+          "time": "2026-11-26T21:22:34.627277+00:00",
+          "arrival": "",
+          "made": "",
+          "entry": "stamp",
+          "signature": "a53906e4cb6a07c68b1cfaba5fb5e6ecc20e686c292dce04de8eea97aacfce850f4c2800f1cc4104ecdd6f0844bb1386313ef7e9ca80b7196933dbedd96d9b08"
+        },
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "made",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+          "time": "2026-11-26T21:23:13.484484+00:00",
+          "arrival": "077e0fbc2a4d1e4f17f42eddfdedac27bb7e8b29a9c56408ea3334037a1013bf",
+          "made": "dc2229f734e1e39e0e9ed0d2de011a6be7fcaf8c49e2035f04638a21831f61e1",
+          "entry": "stamp",
+          "signature": "e9881aeaa486215217bcbec40148576cc5f63e6493ff64534cb18299113b3b0da16ac2ede8ce4946ddf3a88d150b03ba46d74a37f32662d013e90ef98a48b708"
+        },
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "made",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+          "time": "2026-11-26T21:24:04.455675+00:00",
+          "arrival": "077e0fbc2a4d1e4f17f42eddfdedac27bb7e8b29a9c56408ea3334037a1013bf",
+          "made": "0188aef8dfc25115d39a9d3aebe326deb6d18e730c87e55214387f90fd161ab1",
+          "entry": "stamp",
+          "signature": "2d6c51f8537f0c1a367e637fe42c2bf40fbc22cc6dac49ac3973026c183748c47d29254b202dc7e672b0ee26111ab05543aa58acab799d33c02ee488cb572f0c"
+        },
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "departure",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+          "time": "2026-11-26T21:24:14.939942+00:00",
+          "arrival": "077e0fbc2a4d1e4f17f42eddfdedac27bb7e8b29a9c56408ea3334037a1013bf",
+          "made": "",
+          "entry": "stamp",
+          "signature": "4f83c6d7875f75a57a2effe211e5469fd2133b413eab6442b33d62a05f4cef2dfed1d402aa2350089c50754d4dfb13d1da95c9690a2d30cd3e7bd9268ee1ee01"
+        },
+        {
+          "entry": "leave",
+          "wcp": "WCP/0.4",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "f0b5ed87e2ddc72c26ede3def6b4a9a677f5ab20402e63bca61b410b14b81638",
+          "closes": "077e0fbc2a4d1e4f17f42eddfdedac27bb7e8b29a9c56408ea3334037a1013bf",
+          "seq": 1795728254935157,
+          "signature": "e11c1f45042381eec6033dda3718c39796166cc4c0c4d4cf732bf18a9e1311d98bcb181c36229e7d0280cec83681cdd8ac319a1173dbbff160b84482ac6e5905"
+        }
+      ]
+    },
+    {
+      "identity": {
+        "token": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+        "name": "Poet 1.5B"
+      },
+      "entries": [
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "arrival",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+          "time": "2026-11-26T21:22:34.629617+00:00",
+          "arrival": "",
+          "made": "",
+          "entry": "stamp",
+          "signature": "73a9f2c58756041670633c42b2f067be2bc0998c4987b501afe136238ffd2e2ef29db96e6eba5611e27f24587c2ea2723444a525068db1a14e6454409632030e"
+        },
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "made",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+          "time": "2026-11-26T21:23:23.050406+00:00",
+          "arrival": "2bc10244681e99f337a6b004c7f6bd10ff216740381656ba5db56f30dcf841da",
+          "made": "60db0a2c0fd82049ffcb2a7bbff5c1ce5c24a5e92ab3873a25b42d476b79a0b4",
+          "entry": "stamp",
+          "signature": "0ac4f09c3393df3e6f15bdc424a4f2467c8807a880026d7046b732bf8b3277e1c8db3077d582fcc8b2dcbd6894f465da6ea8294ed676ef27591c17e25b2c490f"
+        },
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "made",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+          "time": "2026-11-26T21:24:14.933188+00:00",
+          "arrival": "2bc10244681e99f337a6b004c7f6bd10ff216740381656ba5db56f30dcf841da",
+          "made": "f1892cb16734bffa8d025e0346fe72b9bf2ca56a76834cb6cc8037dbaa7c0320",
+          "entry": "stamp",
+          "signature": "a2f1809cd0066f75587273b2096825294e5d8de8334227ea372796fe01b0034d6a6e0ccd9d49ca15f5bd48e4fad1e090871378b4e01c7a7383c0f2a6083a1308"
+        },
+        {
+          "wcp": "WCP/0.4",
+          "kind": "stamp",
+          "stamp": "departure",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+          "time": "2026-11-26T21:24:14.942282+00:00",
+          "arrival": "2bc10244681e99f337a6b004c7f6bd10ff216740381656ba5db56f30dcf841da",
+          "made": "",
+          "entry": "stamp",
+          "signature": "f3f9069cb492ce5e0f5fa3bc6783da72d9a345084d767221e0f9d107cf33f7f023c29d86366c48d43090378c8614d820d839d6172f28fd42c04fcfacf3d91b08"
+        },
+        {
+          "entry": "leave",
+          "wcp": "WCP/0.4",
+          "world": "rehearsal-before",
+          "world_key": "9f0a99922fa722222c8fcf7776ffea718133bacda359cda621260f9824f3c5c2",
+          "holder": "6a7b1b3a84157c3c730d46281dc6b6c4a821570b179c40dce38316bc35cb53d9",
+          "closes": "2bc10244681e99f337a6b004c7f6bd10ff216740381656ba5db56f30dcf841da",
+          "seq": 1795728254942201,
+          "signature": "f4d2fbf7b2b72942e6cd24ff38b9a40d4849847fdf81b002c236518310e2f74cf68958f069f231e5a8b5b070293e27c370f582fa35adc4aa2395a4711856df02"
+        }
+      ]
+    }
+  ]
+}
